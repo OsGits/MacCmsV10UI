@@ -1,0 +1,290 @@
+{include file="html/mi"}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$obj.type_name} - {$maccms.site_name}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .waterfall {
+            column-count: 6;
+            column-gap: 8px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .waterfall {
+                column-count: 4;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .waterfall {
+                column-count: 3;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .waterfall {
+                column-count: 2;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .waterfall {
+                column-count: 2;
+            }
+        }
+
+        .item {
+            break-inside: avoid;
+            margin-bottom: 8px;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .item:hover {
+            transform: translateY(-5px);
+            z-index: 1;
+        }
+
+        .item img {
+            width: 100%;
+            display: block;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: #f0f0f0 url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjAgMzVjOC4yODQgMCAxNS02LjcxNiAxNS0xNSAwLTguMjg0LTYuNzE2LTE1LTE1LTE1LTguMjg0IDAtMTUgNi43MTYtMTUgMTUgMCA4LjI4NCA2LjcxNiAxNSAxNSAxNXptMC0zM2M5LjkyNSAwIDE4IDguMDc1IDE4IDE4IDAgOS45MjUtOC4wNzUgMTgtMTggMTgtOS45MjUgMC0xOC04LjA3NS0xOC0xOCAwLTkuOTI1IDguMDc1LTE4IDE4LTE4eiIgZmlsbD0iI2RkZCIgZmlsbC1ydWxlPSJub256ZXJvIi8+PC9zdmc+') center no-repeat;
+        }
+
+        .item img.loaded {
+            opacity: 1;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 8px;
+            opacity: 1;
+            font-size: 10px;
+            text-align: left;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-all;
+        }
+
+        .item:hover .caption {
+            opacity: 1;
+        }
+
+        .item a {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto 15px;
+            padding: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #2196F3;
+        }
+
+        .breadcrumb .separator {
+            margin: 0 8px;
+            color: #999;
+        }
+
+        .breadcrumb .current {
+            color: #2196F3;
+        }
+
+        .pagination {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .pagination a, .pagination span {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 0 4px;
+            color: #666;
+            text-decoration: none;
+            border-radius: 4px;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .pagination a:hover {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .pagination span.current {
+            background: #2196F3;
+            color: white;
+        }
+
+        @media screen and (max-width: 768px) {
+            .pagination a, .pagination span {
+                padding: 6px 12px;
+                margin: 0 2px;
+                font-size: 14px;
+            }
+        }
+
+        /* 添加悬浮按钮样式 */
+        .float-buttons {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .float-button {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .float-button:hover {
+            background: rgba(33, 150, 243, 0.8);
+            transform: translateY(-2px);
+        }
+
+        @media screen and (max-width: 768px) {
+            .float-buttons {
+                right: 10px;
+                bottom: 10px;
+            }
+            
+            .float-button {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="breadcrumb">
+        <a href="{:mac_url('index/index')}">返回首页</a>
+        <span class="separator">/</span>
+        {$obj.type_name}
+        {if condition="$param.tag neq ''"}
+        <span class="separator">/</span>
+        <span class="current">{$param.tag}</span>
+        {/if}
+    </div>
+
+    <div class="waterfall">
+    {maccms:vod num="60" paging="yes" pageurl="vod/type" type="current" order="desc" by="time"}
+        <div class="item">
+            <a href="{:mac_url_vod_detail($vo)}" target="_blank">
+                <img src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}" loading="lazy" onload="this.classList.add('loaded')">
+                <div class="caption">{$vo.vod_name}</div>
+            </a>
+        </div>
+    {/maccms:vod}
+    </div>
+
+    <div class="pagination">
+    {if condition="$__PAGING__.record_total gt 0"}
+	
+
+<br>
+
+<a  href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}">
+<b>⇍</b>
+</a>&nbsp;
+ 
+	{maccms:foreach name="$__PAGING__.page_num" id="num"}
+	{if condition="$__PAGING__['page_current'] eq $num"}
+&nbsp;
+<b>
+[{$num}]
+</b>&nbsp;
+
+  {else}
+
+&nbsp;<a href="{$__PAGING__.page_url|mac_url_page=$num}"><b>{$num}</b></a>&nbsp;&nbsp;
+
+  	{/if}
+	{/maccms:foreach}  
+&nbsp;
+<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}">
+<b>⇏</b>
+</a><br><br>
+<a  href="{$__PAGING__.page_url|mac_url_page=1}">
+  <b>↞ 第1页</b>
+</a>&nbsp;&nbsp;
+&nbsp;&nbsp;
+<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}">
+<b>第{$__PAGING__.page_total}页 ↠</b>
+</a>
+
+{else/}
+<h1>没有找到匹配数据</h1>
+  {/if}
+<br><br>
+    </div>
+
+    <div class="float-buttons">
+        <a href="{:mac_url('index/index')}" class="float-button" title="返回首页">⌂</a>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="float-button" title="返回顶部">↑</button>
+    </div>
+</body>
+</html>

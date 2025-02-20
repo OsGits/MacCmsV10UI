@@ -1,0 +1,332 @@
+{include file="html/mi"}
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class} {$maccms.site_name}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .windows-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            height: auto;
+        }
+
+        .toolbar {
+            background-color: #f0f0f0;
+            padding: 2px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .list-container {
+            flex: 1;
+            padding: 0px;
+            overflow-y: auto;
+            overflow-x: auto;
+            height: 80vh;
+            min-width: 0;
+        }
+
+        .list-header {
+            display: grid;
+            grid-template-columns: 40px 200px 120px fit-content(100%);
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            font-size: 12px;
+            color: #333;
+            font-weight: 500;
+            min-width: 600px;
+            position: sticky;
+            left: 0;
+            z-index: 1;
+        }
+
+        .list-item {
+            display: grid;
+            grid-template-columns: 40px 200px 120px fit-content(100%);
+            padding: 8px 16px;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+            cursor: pointer;
+            min-width: 600px;
+            white-space: nowrap;
+        }
+
+        .list-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .list-item.selected {
+            background-color: #e5f3ff;
+        }
+
+        .list-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .list-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .list-name, .list-date, .list-type {
+            white-space: nowrap;
+        }
+
+        .list-name {
+            font-size: 13px;
+            color: #000;
+        }
+
+        .list-date, .list-type {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .list-item a {
+            text-decoration: none;
+            color: inherit;
+            display: contents;
+        }
+
+        .status-bar {
+            background-color: #f0f0f0;
+            padding: 4px 8px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #666;
+            position: sticky;
+            bottom: 0;
+            z-index: 100;
+        }
+
+        .float-buttons {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 9999;
+        }
+
+        .float-button {
+            width: 40px;
+            height: 40px;
+            background: #0078D4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .float-button .icon-img {
+            width: 20px;
+            height: 20px;
+            color: white;
+            font-size: 20px;
+        }
+
+        /* Mobile styles */
+        @media screen and (max-width: 768px) {
+            .list-container {
+                padding: 0px;
+            }
+
+            .list-icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            .list-name {
+                font-size: 12px;
+            }
+
+            .list-date, .list-type {
+                font-size: 11px;
+            }
+        }
+
+        /* Add pagination styles */
+        .pagination {
+            padding: 15px;
+            text-align: center;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        .pagination a, .pagination span {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 0 2px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            background: #fff;
+            color: #333;
+            text-decoration: none;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .pagination span.current {
+            background: #0078D4;
+            color: #fff;
+            border-color: #0078D4;
+        }
+
+        .pagination a:hover {
+            background: #f5f5f5;
+            border-color: #ccc;
+        }
+
+        @media screen and (max-width: 768px) {
+            .pagination {
+                padding: 10px;
+            }
+
+            .pagination a, .pagination span {
+                padding: 4px 8px;
+                margin: 0 1px;
+                font-size: 11px;
+            }
+        }
+
+        .list-type {
+            padding-right: 16px;
+        }
+
+        .breadcrumb {
+            padding: 10px 15px;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .breadcrumb a {
+            color: #000;
+            text-decoration: none;
+            margin-right: 5px;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+            color: #333;
+        }
+        .breadcrumb span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="windows-container">
+        <div class="toolbar">
+            <div class="breadcrumb">
+                <a href="/">首页</a> &gt;
+                <a href="/appso">搜索</a> &gt;
+                <span>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}</span>
+            </div>
+        </div>
+        
+        <div class="list-container">
+            <div class="list-header">
+                <div></div>
+                <div>名称</div>
+                <div>修改日期</div>
+                <div>详情</div>
+            </div>
+            {maccms:vod num="30" paging="yes" pageurl="vod/search" order="desc" by="time"}
+            <div class="list-item">
+                <a href="{:mac_url_vod_detail($vo)}">
+                    <div class="list-icon"><img alt="{$vo.vod_name}" src="{:mac_url_img($vo.vod_pic)}"></div>
+                    <div class="list-name">{$vo.vod_name}</div>
+                    <div class="list-date">{$vo.vod_time|date='m/d H:d:i',###}</div>
+                    <div class="list-type">{$vo.vod_year}&nbsp;{if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}&nbsp;{$vo.vod_area|mac_default='地球上拍的'}&nbsp;{$obj.type_1.type_name}&nbsp;{$vo.type.type_name}&nbsp;{$vo.vod_class|mac_default='视频类'}&nbsp;</div>
+                </a>
+            </div>
+            {/maccms:vod}
+        </div>
+        
+        <div class="pagination">
+            {if condition="$__PAGING__.record_total gt 0"}
+	
+
+<br>
+
+<a  href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}">
+<b>⇍</b>
+</a>&nbsp;
+ 
+	{maccms:foreach name="$__PAGING__.page_num" id="num"}
+	{if condition="$__PAGING__['page_current'] eq $num"}
+&nbsp;
+<b>
+[{$num}]
+</b>&nbsp;
+
+  {else}
+
+&nbsp;<a href="{$__PAGING__.page_url|mac_url_page=$num}"><b>{$num}</b></a>&nbsp;&nbsp;
+
+  	{/if}
+	{/maccms:foreach}  
+&nbsp;
+<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}">
+<b>⇏</b>
+</a><br><br>
+<a  href="{$__PAGING__.page_url|mac_url_page=1}">
+  <b>↞ 第1页</b>
+</a>&nbsp;&nbsp;
+&nbsp;&nbsp;
+<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}">
+<b>第{$__PAGING__.page_total}页 ↠</b>
+</a>
+
+{else/}
+<h1>没有找到匹配数据</h1>
+  {/if}
+<br><br>
+        </div>
+
+        <div class="status-bar">
+            共{$__PAGING__.record_total}条数据,当前{$__PAGING__.page_current}/{$__PAGING__.page_total}页
+        </div>
+    </div>
+
+    {include file="label/an"}
+
+    <script>
+        document.querySelectorAll('.list-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                document.querySelectorAll('.list-item').forEach(i => {
+                    i.classList.remove('selected');
+                });
+                item.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+</html>

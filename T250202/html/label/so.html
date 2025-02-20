@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索 - {$maccms.site_name}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .windows-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .search-header {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .search-box {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #0078D4;
+            box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2);
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            background: #0078D4;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .search-button:hover {
+            background: #006cbd;
+        }
+
+        .list-container {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            height: calc(100vh - 180px);
+            overflow-x: auto;
+        }
+
+        .list-header {
+            display: grid;
+            grid-template-columns: 40px minmax(200px, auto) 120px fit-content(100%);
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            font-size: 12px;
+            color: #333;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .list-item {
+            display: grid;
+            grid-template-columns: 40px minmax(200px, auto) 120px fit-content(100%);
+            padding: 8px 16px;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .list-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .list-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .list-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .list-name, .list-date, .list-type {
+            white-space: nowrap;
+        }
+
+        .list-name {
+            font-size: 13px;
+            color: #000;
+        }
+
+        .list-date, .list-type {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .list-item a {
+            text-decoration: none;
+            color: inherit;
+            display: contents;
+        }
+
+        .status-bar {
+            background-color: #f0f0f0;
+            padding: 4px 8px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .float-buttons {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 9999;
+        }
+
+        .float-button {
+            width: 40px;
+            height: 40px;
+            background: #0078D4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .float-button .icon-img {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-button {
+                padding: 12px;
+            }
+
+            .list-container {
+                padding: 10px;
+            }
+
+            .list-header, .list-item {
+                grid-template-columns: 30px 1fr 80px auto;
+                padding: 8px;
+                font-size: 12px;
+            }
+        }
+		.folder-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 4px;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23FFC107" d="M20,6h-8l-2-2H4C2.9,4,2,4.9,2,6v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V8C22,6.9,21.1,6,20,6z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+		.folder-icon {
+                width: 25px; /* Smaller icons for mobile */
+                height: 25px;
+            }
+    </style>
+</head>
+<body>
+    <div class="windows-container">
+        <div class="search-header">
+            <form class="search-box" method="get" action="{:mac_url('vod/search')}">
+                <input type="text" class="search-input" name="wd" value="{$param.wd}" placeholder="输入关键词搜索...">
+                <button type="submit" class="search-button">搜索</button>
+            </form>
+        </div>
+
+        <div class="list-container">
+            <div class="list-header">
+                <div></div>
+                <div>名称</div>
+                <div>更新时间</div>
+                <div>演员</div>
+            </div>
+
+            {maccms:foreach name=":explode(',',$maccms.search_hot)" id="vo2" key="key2"}
+			<div class="list-item">
+                <a href="{:mac_url('vod/search',['wd'=>$vo2])}">
+                    <div class="folder-icon"></div>
+                    <div class="list-name">{$vo2}</div>
+                    <div class="list-date">实时更新</div>
+                    <div class="list-type">点击查看详情</div>
+                </a>
+            </div>
+            {/maccms:foreach}	
+			
+        </div>
+
+        
+
+        <div class="status-bar">
+            在上方搜索框输入项目名
+        </div>
+    </div>
+
+    {include file="label/an"}
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.lazyload@1.9.1/jquery.lazyload.min.js"></script>
+    <script>
+        $(function() {
+            $("img.lazy").lazyload({
+                effect: "fadeIn",
+                threshold: 200
+            });
+
+            document.querySelectorAll('.list-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    document.querySelectorAll('.list-item').forEach(i => {
+                        i.classList.remove('selected');
+                    });
+                    item.classList.add('selected');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

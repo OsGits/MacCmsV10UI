@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机播放视频</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #343a40;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: #495057;
+            margin-top: 20px;
+            font-size: 1.8em;
+        }
+        iframe {
+            border: 4px solid #007bff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            width: 100%;
+            max-width: 768px;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            transition: transform 0.3s;
+        }
+        iframe:hover {
+            transform: scale(1.05);
+        }
+        p {
+            color: #6c757d;
+            margin-top: 10px;
+            text-align: center;
+            margin-left: 0;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .small-button {
+            background-color: #999999;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+        .small-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <?php
+        // 数据库连接设置
+        $servername = "127.0.0.1:3306"; // 数据库服务器
+        $username = "vodx"; // 数据库用户名
+        $password = "yvhkddwfn"; // 数据库密码
+        $dbname = "vodx"; // 数据库名称
+
+        // 创建连接
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // 检查连接
+        if ($conn->connect_error) {
+            die("连接失败: " . $conn->connect_error);
+        }
+
+        // 查询指定表的数据，获取特定字段
+        $sql = "SELECT vod_id, vod_name FROM mac_vod"; // 替换为您的表名
+        $result = $conn->query($sql);
+
+        // 随机选择一条记录
+        $randomVod = null;
+        if ($result->num_rows > 0) {
+            $rows = $result->fetch_all(MYSQLI_ASSOC);
+            $randomVod = $rows[array_rand($rows)]; // 随机选择一条记录
+        }
+    ?>
+    
+
+    <?php if ($randomVod): ?>
+        <p>
+        <button onclick="location.reload();">换一个</button>
+        <button onclick="window.location.href='{$maccms.site_url}/x/<?php echo htmlspecialchars($randomVod['vod_id']); ?>.html';">完整版</button>
+        <button onclick="window.location.href='{$maccms.site_url}';">返回首页</button>
+    </p>   
+       
+        <iframe src="https://play.vodv.cc/v/<?php echo htmlspecialchars($randomVod['vod_id']); ?>I1I1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" security="restricted" sandbox="allow-same-origin allow-forms allow-scripts"></iframe>
+    <?php else: ?>
+        <p>没有可用的视频数据。</p>
+    <?php endif; ?>
+
+    
+
+    
+    <p>当前播放播放：<?php echo htmlspecialchars($randomVod['vod_name']); ?> & ID: <?php echo htmlspecialchars($randomVod['vod_id']); ?></p>
+
+    <h3>热门推荐</h3>
+    <div>
+    {maccms:foreach name=":explode(',',$maccms.search_hot)" id="vo2" key="key2"}
+        <button class="small-button" onclick="window.location.href='{$maccms.site_url}{:mac_url('vod/search',['wd'=>$vo2])}';">{$vo2}</button>
+    {/maccms:foreach}
+    </div>
+    <?php
+        // 关闭连接
+        $conn->close();
+    ?>
+</body>
+</html>

@@ -1,0 +1,372 @@
+{include file="html/mi"}
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$obj.vod_name} :: 详情介绍！ - {$maccms.site_name}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .windows-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .detail-container {
+            flex: 1;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            background: #fff;
+        }
+
+        .poster-section {
+            position: relative;
+        }
+
+        .poster-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .title-section {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .movie-title {
+            font-size: 24px;
+            color: #333;
+            margin: 0 0 10px 0;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            min-width: 0;
+        }
+
+        .info-item {
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: #333;
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-all;
+            line-height: 1.4;
+        }
+
+        .description {
+            line-height: 1.6;
+            color: #444;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .description p {
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-all;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .play-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+
+        .play-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .play-item {
+            padding: 8px 12px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            color: #333;
+            transition: all 0.2s;
+            text-decoration: none;
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-all;
+            line-height: 1.3;
+            min-height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-item:hover {
+            background: #0078D4;
+            color: #fff;
+            border-color: #0078D4;
+        }
+
+        .float-buttons {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 9999;
+        }
+
+        .float-button {
+            width: 40px;
+            height: 40px;
+            background: #0078D4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .float-button .icon-img {
+            width: 20px;
+            height: 20px;
+            color: white;
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .detail-container {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+
+            .poster-section {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .info-value {
+                font-size: 13px;
+            }
+
+            .play-list {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 8px;
+            }
+
+            .play-item {
+                padding: 6px 10px;
+                font-size: 13px;
+                min-height: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr); /* Maintain 2 columns on smaller screens */
+                gap: 8px;
+            }
+        }
+
+        /* Add general link styles */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .info-value a {
+            color: #333;
+            transition: color 0.2s;
+        }
+
+        .info-value a:hover {
+            color: #0078D4;
+        }
+        .toolbar {
+            background-color: #f0f0f0;
+            padding: 2px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .breadcrumb {
+            padding: 10px 15px;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .breadcrumb a {
+            color: #000;
+            text-decoration: none;
+            margin-right: 5px;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+            color: #333;
+        }
+        .breadcrumb span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="windows-container">
+        <div class="toolbar">
+            <div class="breadcrumb">
+                <a href="/">首页</a> &gt;
+                <a href="{:mac_url_type($obj.type_1)}">{$obj.type_1.type_name}</a> &gt;
+                <a href="{:mac_url_type($obj.type)}">{$obj.type.type_name}</a> &gt;
+                <span>详情信息</span>
+            </div>
+        </div>
+        
+        <div class="detail-container">
+            <div class="poster-section">
+                <img class="poster-image" src="{:mac_url_img($obj.vod_pic)}" alt="{$obj.vod_name}">
+            </div>
+            
+            <div class="info-section">
+                <div class="title-section">
+                    <h1 class="movie-title">{$obj.vod_name}</h1>
+                    <div class="subtitle">{if condition="$obj.vod_serial gt 0"}第{$obj.vod_serial}集/共{$obj.vod_total}集{else/}{$obj.vod_remarks}{/if}</div>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">导演</div>
+                        <div class="info-value">{$obj.vod_director|mac_url_create='director'}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">动态</div>
+                        <div class="info-value">{if condition="$obj.vod_serial gt 0"}第{$obj.vod_serial}集/共{$obj.vod_total}集{else/}{$obj.vod_remarks}{/if}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">地区</div>
+                        <div class="info-value">{$obj.vod_area|mac_default='暂无'}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">年代</div>
+                        <div class="info-value">{$obj.vod_year|mac_url_create='year'}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">语言</div>
+                        <div class="info-value">{$obj.vod_lang|mac_default='暂无'}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">类型</div>
+                        <div class="info-value">{$obj.type_1.type_name}&nbsp;{$obj.type.type_name}&nbsp;{$obj.vod_class|mac_default='视频类'}</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">录入</div>
+                        <div class="info-value">{$obj.vod_time_add|date='m/d y H:i',###}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">更新</div>
+                        <div class="info-value">{$obj.vod_time|date='m/d y H:i',###}</div>
+                    </div>
+                </div>
+
+                <div id="线路选择"></div> 
+                <div class="play-section">
+                    <h3 class="info-label">播放线路选择</h3>
+                    <div class="play-list">
+                        {maccms:foreach name="obj.vod_play_list" id="vo" key="key"}
+                        <a href="#{$vo.player_info.show}" class="play-item">
+                            {$vo.player_info.show}
+                        </a>
+                        {/maccms:foreach}
+                        
+                    </div>
+                </div>
+                
+
+                <div class="description">
+                    <h3 class="info-label">主要演员</h3>
+                    <p class="info-value">{$obj.vod_actor|mac_url_create='actor'}</p>
+                </div>
+
+
+                <div class="description">
+                    <h3 class="info-label">剧情简介</h3>
+                    <p class="info-value">{$obj.vod_blurb}… </p>
+                </div>
+
+                {maccms:foreach name="obj.vod_play_list" id="vo" key="key"}
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <div id="{$vo.player_info.show}"></div>        
+                <div class="play-section" >
+                    <h3 class="info-label">{$vo.player_info.show}播放列表 . <a href="#线路选择" >[切换线路]</a></h3>
+                    <div class="play-list">
+                        {maccms:foreach name="vo.urls" id="vo2" key="key2"}
+                        <a href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}" class="play-item" target="_blank">
+                            {$vo2.name}
+                        </a>
+                        {/maccms:foreach}
+                        
+                    </div>
+                </div>
+                {/maccms:foreach}
+            </div>
+        </div>
+    </div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br>.
+    {include file="label/an"}
+</body>
+</html>
