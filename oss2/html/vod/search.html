@@ -1,0 +1,120 @@
+{include file="html/mi"}
+<html lang="en">
+<title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索 :: {$maccms.site_name} :: {$maccms.site_description}！</title>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+  .menu-container {
+      column-count: 2;
+      column-gap: 10px;
+    }
+
+  .menu-item {
+      display: inline-block;
+      width: 100%;
+      background-color: #f1f1f1;
+      padding: 15px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+  .menu-item h3 {
+      margin: 0;
+    }
+
+  .menu-item p {
+      margin: 10px 0 0 0;
+    }
+  </style>
+  <style>
+   .search-box {
+      width: 98%;
+      position: relative;
+    }
+
+  .search-box input {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #d6d6d6;
+      border-radius: 40px;
+      outline: none;
+      transition: border 0.3s ease;
+    }
+
+  .search-box input:focus {
+      border: 2px solid #4CAF50;
+    }
+
+  .search-box button {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      padding: 10px 20px;
+      background-color: #4b4b4b;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+    }
+
+  .search-box button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body><br><br><br>
+<div style="padding: 20px;">
+  <div class="search-box">
+	<form  name="search" method="get" action="{:mac_url('vod/search')}" onSubmit="return qrsearch();">	
+    <input type="text" name="wd" value="{$param.wd}" placeholder="请在此处输入影片名或演员名称" />
+    <button type="submit" id="searchbutton">搜索</button>
+	</form>
+	</div>
+	{maccms:vod num="30" paging="yes" pageurl="vod/search" order="desc" by="time"}{/maccms:vod} 
+{if condition="$__PAGING__.record_total gt 0"}
+共{$__PAGING__.record_total}条数据,当前{$__PAGING__.page_current}/{$__PAGING__.page_total}页
+{else/}
+没有找到匹配数据
+{/if}
+  <div class="menu-container">
+    {maccms:vod num="30" paging="yes" pageurl="vod/search" order="desc" by="time"}
+	<a href="{:mac_url_vod_detail($vo)}">
+		
+    <div class="menu-item" style="color: #<?php $min = 000000; $max = 999999; $randomNumber = rand($min, $max); echo $randomNumber; ?>;">
+      <h3><center><img src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}" width="100%" onerror="this.style.display='none'"><br>{$vo.vod_name}</center></h3>
+      <p><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}&nbsp;{$vo.vod_director}于{$vo.vod_year}{$vo.vod_area}上映，最后更新于{$vo.vod_time|date='m/d Y H:i:s',###}，参演{$vo.vod_actor}讲述{$vo.vod_blurb}……</font></p>
+    </div>
+	</a>
+	{/maccms:vod}
+  <script>
+    function lazyLoad() {
+      const images = document.querySelectorAll('img[data-src]');
+
+      images.forEach((img) => {
+        if (img.getBoundingClientRect().top < window.innerHeight && img.getBoundingClientRect().bottom >= 0) {
+          img.src = img.getAttribute('data-src');
+          img.style.display = 'block';
+        }
+      });
+    }
+
+    window.addEventListener('scroll', lazyLoad);
+    lazyLoad();
+  </script>	
+  </div>
+  <br>{include file="html/fy"}<br><br><br><br>
+{$maccms.site_tj} 
+ </div>
+{include file="html/dh"}
+</body>
+
+</html>

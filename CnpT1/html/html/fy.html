@@ -1,0 +1,39 @@
+{if condition="$__PAGING__.record_total gt 0"}
+<div class="mac-pagination">
+    <div class="page-info">
+        共{$__PAGING__.record_total}条数据,当前{$__PAGING__.page_current}/{$__PAGING__.page_total}页
+    </div>
+    
+    <div class="page-controls">
+        <a class="page-btn" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}">
+            <span class="page-arrow">⇍</span>
+        </a>
+        
+        {maccms:foreach name="$__PAGING__.page_num" id="num"}
+            {if condition="$__PAGING__['page_current'] eq $num"}
+                <span class="page-btn current">{$num}</span>
+            {else}
+                <a class="page-btn" href="{$__PAGING__.page_url|mac_url_page=$num}">{$num}</a>
+            {/if}
+        {/maccms:foreach}
+        
+        <a class="page-btn" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}">
+            <span class="page-arrow">⇏</span>
+        </a>
+    </div>
+    
+    <div class="page-jumper">
+        <a class="page-btn jump" href="{$__PAGING__.page_url|mac_url_page=1}">
+            <span class="page-arrow">↞</span> 第1页
+        </a>
+        <a class="page-btn jump" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}">
+            第{$__PAGING__.page_total}页 <span class="page-arrow">↠</span>
+        </a>
+    </div>
+</div>
+{else/}
+<div class="no-data">
+    <h1>没有找到匹配数据</h1>
+</div>
+{/if}
+   

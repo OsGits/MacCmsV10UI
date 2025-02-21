@@ -1,0 +1,13 @@
+<li class="media thread tap  " data-href="{:mac_url_vod_detail($vo)}" data-tid="24">
+<div class="small  mr-1" style="padding: .5rem .6rem .5rem .1rem;"title="发帖日期">
+<div class="small date badge mr-3 "><span style="font-weight: 500;font-size: 2rem;">{$vo.vod_letter}</span>
+<br>{$vo.vod_time|date='H:s',###}</div>
+</div>
+<div class="media-body">
+<div class="subject break-all mb-2">
+<i class="icon-top-3"></i>
+<a style="text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);" href="{:mac_url_vod_detail($vo)}">{$vo.vod_name} {if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}</a>
+</div>
+{include file="html/txtv"}
+</div>
+</li>

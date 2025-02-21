@@ -1,0 +1,18 @@
+{include file="mi/mi"}
+{include file="vod/da1"}
+
+        
+		<nav class="my-3">
+		{maccms:foreach name="obj.vod_play_list" id="vo" key="key"}
+		<ul class="pagination justify-content flex-wrap">
+		<li class="page-item">
+		<a class="page-link" >{$vo.player_info.show}地址：</a>
+		</li>
+		</ul>
+		{maccms:foreach name="vo.urls" id="vo2" key="key2"}
+		♨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{$maccms.site_wapurl}/v/{$obj.vod_id}I{$vo.sid}I{$vo2.nid}"  target="_blank">{$vo2.name}</a><br>
+		{/maccms:foreach}
+		{/maccms:foreach}
+		</nav>
+		<a href="?close=yes&url=<?php echo $url?>"  style="font-size: 15pt;">安全退出</a>
+		{include file="vod/da2"}

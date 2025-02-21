@@ -1,0 +1,148 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$obj.vod_name} :: 详情 :: {$maccms.site_name} :: {$maccms.site_description}！</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+       .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #000;
+        }
+		a {
+            color: #666;
+        }
+		hr {
+      border: none;
+      height: 1px;
+      background-color: #dddddd;
+    }
+	
+	.custom-button {
+      background-color: #bbbbbb; /* 背景颜色 */
+      border: none; /* 去除边框 */
+      color: #ffffff; /* 文字颜色 */
+      padding: 5px 10px; /* 内边距 */
+	  margin: 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      border-radius: 5px; /* 圆角 */
+      cursor: pointer; /* 鼠标指针变为手型 */
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* 阴影效果 */
+    }
+
+   .custom-button:hover {
+      background-color: #06a5a3; /* 鼠标悬停时的背景颜色 */
+    }
+	
+	  .menu-container {
+      column-count: 2;
+      column-gap: 10px;
+    }
+
+  .menu-item {
+      display: inline-block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+  .menu-item h3 {
+      margin: 0;
+    }
+
+  .menu-item p {
+      margin: 10px 0 0 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container"><br><br>
+        <h3><a href="/f/{$obj.type.type_id}.html">↫查看同类资源</a></h3> 
+		<p><img src="{:mac_url_img($obj.vod_pic)}" alt="{$obj.vod_name} 海报" width="300" onerror="this.style.display='none'"></p>
+		
+		<p><strong>{$obj.vod_name}</strong><font size="1"> :: {if condition="$obj.vod_serial gt 0"}第{$obj.vod_serial}集/共{$obj.vod_total}集{else/}{$obj.vod_remarks}{/if}</font></p>
+		
+		<p><strong>主演：</strong><font size="1">{$obj.vod_actor|mac_url_create='actor'}</font></p>
+		
+		<div class="menu-container">
+                
+		<div class="menu-item">
+		<strong>导演：</strong><font size="1">{$obj.vod_director|mac_url_create='director'}</font>
+        </div>
+		
+		<div class="menu-item">
+		<strong>编剧：</strong><font size="1">{$obj.vod_writer|mac_url_create='writer'}</font>
+        </div>
+		
+		<div class="menu-item">
+		<strong>语言：</strong><font size="1">{$obj.vod_lang|mac_url_create='lang'}</font>
+        </div>
+		
+		<div class="menu-item">
+		<strong>地区：</strong><font size="1">{$obj.vod_area|mac_url_create='area'}</font>
+		</div>
+		
+		<div class="menu-item">
+		<strong>年份：</strong><font size="1">{$obj.vod_year|mac_url_create='year'}</font>
+		</div>		
+		
+        <div class="menu-item">
+		<strong>类型：</strong><font size="1">{$obj.vod_class|mac_url_create='class'}</font>
+		</div>
+		
+		<div class="menu-item">
+		<strong>录入：</strong><font size="1">{$obj.vod_time_add|date='m/d y H:i',###}</font>
+		</div>
+		
+        <div class="menu-item">
+		<strong>更新：</strong><font size="1">{$obj.vod_time|date='m/d y H:i',###}</font>
+		</div>
+		
+		</div>
+        <p><strong>简介：</strong><font size="1">{$obj.vod_blurb}… </font></p>
+
+        
+		
+		
+		<hr>
+		{maccms:foreach name="obj.vod_play_list" id="vo" key="key"}
+		<p><strong>{$vo.player_info.show}-全屏播放：</strong><font size="1">{$vo.player_info.tip}</font></p>		
+		{maccms:foreach name="vo.urls" id="vo2" key="key2"}
+		
+		<font size="1">
+		<a href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}" >
+		<button class="custom-button">{$vo2.name}</button>
+		</a>
+		</font>
+		
+		{/maccms:foreach}
+		{/maccms:foreach}
+		<br><br><br><br>
+    </div>
+{include file="html/dh"}
+</body>
+
+</html>

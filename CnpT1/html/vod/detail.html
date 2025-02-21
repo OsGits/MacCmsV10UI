@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影视展示</title>    
+    
+    <link rel="stylesheet" href="{$maccms.path_tpl}d.css?{include file="html/bb"}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body style="background-image: url('{:mac_url_img($obj.vod_pic)}');">
+    
+    <div class="container">
+        <div class="back-button">
+            <a href="javascript:history.back();">返回上一页</a>
+        </div>
+        <br><br>
+        <div class="aspect-ratio-box">
+            <div class="card-bg" style="background-image: url('{:mac_url_img($obj.vod_pic)}');"></div>
+            <div class="card">
+                <div class="card-image">
+                    <a href="{:mac_url_vod_detail($obj)}">   
+                        <img src="{:mac_url_img($obj.vod_pic)}" alt="{$obj.vod_name}" onerror="this.src='https://via.placeholder.com/300x450.png?text=No+Image';this.onerror=null;">
+                    </a>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h2 class="card-title" onclick="copyTitle(this)" style="cursor: pointer;">
+                            <i class="fas fa-film"></i>
+                            <span>{$obj.vod_name}</span>
+                        </h2>
+                        <div class="card-score">{$obj.vod_year}</div>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">{$obj.vod_area}</span>
+                        <span class="tag">{$obj.type.type_name}</span>
+                        <span class="tag">{$obj.vod_class}</span>
+                        <span class="tag">{$obj.vod_lang}</span>
+                    </div>
+                    <div class="card-info">                    
+                        <p>主演：{$obj.vod_actor}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p>&nbsp;&nbsp;{$obj.vod_blurb|mac_filter_html}</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{$maccms.path_tpl}d.js?{include file="html/bb"}"></script>
+    <script>
+    function copyTitle(element) {
+        const titleText = element.querySelector('span').innerText;
+        navigator.clipboard.writeText(titleText).then(() => {
+            // 显示复制成功提示
+            const notification = document.createElement('div');
+            notification.textContent = '已复制到剪贴板';
+            notification.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 5px;
+                z-index: 1000;
+            `;
+            document.body.appendChild(notification);
+            
+            // 2秒后移除提示
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        }).catch(err => {
+            console.error('复制失败:', err);
+        });
+    }
+    </script>
+</body>
+</html>

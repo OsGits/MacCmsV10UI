@@ -1,0 +1,102 @@
+{include file="html/mi"}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{$obj.type_name} :: {$maccms.site_name} :: {$maccms.site_description}！</title>
+  <style>
+    img {
+      display: none;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+   .container {
+      column-count: 3;
+      column-gap: 10px;
+      padding: 10px;
+    }
+
+  .image-item {
+      position: relative;
+      break-inside: avoid;
+      margin-bottom: 10px;
+    }
+
+  .image-item img {
+      width: 100%;
+    }
+
+  .image-item h3 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      width: 100%;
+    }
+
+  .image-item p {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+    }
+	p {
+	font-size: 9px;
+	}
+	h3 {
+	font-size: 9px;
+	}
+	a {
+            color: #666;
+        }
+  </style>
+</head>
+
+<body><br><br>
+<h3><a href="/appfl">↫查看全分类</a></h3>
+  <div class="container">
+{maccms:vod num="30" paging="yes" pageurl="vod/show" type="current" order="desc" by="time"}
+    <div class="image-item">
+      <a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">
+	  <img src="{$maccms.path_tpl}img/jz.svg" data-src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}">
+	  </a>
+      <h3>{$vo.vod_name}</h3>
+      <p>{if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}</p>
+    </div>
+{/maccms:vod}
+  <script>
+    function lazyLoad() {
+      const images = document.querySelectorAll('img[data-src]');
+
+      images.forEach((img) => {
+        if (img.getBoundingClientRect().top < window.innerHeight && img.getBoundingClientRect().bottom >= 0) {
+          img.src = img.getAttribute('data-src');
+          img.style.display = 'block';
+        }
+      });
+    }
+
+    window.addEventListener('scroll', lazyLoad);
+    lazyLoad();
+  </script>
+  
+  </div>
+  {include file="html/fy"}
+  <br><br><br>
+{$maccms.site_tj}  
+{include file="html/dh"}
+</body>
+
+</html>

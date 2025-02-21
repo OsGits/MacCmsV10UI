@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$obj.vod_name}{$obj.vod_year}年{$obj.vod_area}{$obj.vod_class}片在线播放 - {$obj.vod_name}详情介绍 - {$obj.vod_name}网盘下载 - {$obj.vod_name}迅雷下载 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.vod_name},{$obj.vod_name}在线播放,{$obj.vod_name}网盘下载,{$obj.vod_year}{$obj.type.type_name},{$obj.vod_area}{$obj.type.type_name},{$obj.vod_class}{$obj.type.type_name},{$obj.vod_lang}{$obj.type.type_name},{$obj.vod_director},{$obj.vod_actor}" />
+    <meta name="description" content="{$obj.vod_name|mac_filter_html}剧情:{$obj.vod_blurb|mac_filter_html}" />
+    <meta property="og:type" content="{$obj.type.type_name}"/>
+    <meta property="og:title" content="{$obj.vod_name}{$obj.vod_year}年{$obj.vod_area}{$obj.vod_class}片在线播放 - {$obj.vod_name}详情介绍 - {$obj.vod_name}网盘下载 - {$obj.vod_name}迅雷下载 - {$maccms.site_name}"/>
+    <meta property="og:site_name " content="{$maccms.site_name}"/>
+    <meta property="og:description" content="{$obj.vod_name|mac_filter_html}剧情:{$obj.vod_blurb|mac_filter_html}..."/>
+    <meta property="og:url" content="https://{$maccms.site_url}/x/{$obj.vod_id}"/>
+    <meta property="og:image" content="{:mac_url_img($obj.vod_pic)}"/>
+{maccms:vod num="2" type="" order="desc" by="time"}    <link rel="prev" title="{$vo.vod_name} {if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}" href="https://{$maccms.site_url}{:mac_url_vod_detail($vo)}"/>
+{/maccms:vod}
+    <link rel="canonical" href="https://{$maccms.site_url}/x/{$obj.vod_id}"/>
+	{include file="html/h"}
+</head>
+
+<body>
+	
+	
+
+	
+	
+	{include file="html/dh"}
+										
+
+
+	<main id="body">
+		<div class="container">
+
+		
+
+
+
+<div class="row">
+	<div class="col-lg-9 main">
+	<div class="header-index-meyan mb-3"style="width: 100%;background-image: url({:mac_url_img($obj.vod_pic)});background-size: cover;background-attachment: fixed;" onerror="this.style.display='none'">
+
+<div class="media ">
+	<div class="small  mr-1" title="发帖日期">
+					
+					
+						<div class="small date badge mr-3 "><span style="font-weight: 500;font-size: 2rem;">{$obj.vod_time|date='d',###}</span><br>
+						{$obj.vod_time|date='Y/m',###}<br>
+						<i class="icon-eye"></i>{$obj.vod_time|date='H:s',###}</div>
+					
+						</div>					
+							
+						
+						<div class="media-body">
+						
+							
+							<div class=" break-all">
+								<div >
+
+									<span class="title-meyan">{$obj.vod_name} {if condition="$obj.vod_serial gt 0"}第{$obj.vod_serial}集/共{$obj.vod_total}集{else/}{$obj.vod_remarks}{/if}</span>
+									
+																		
+
+								</div>
+								
+							</div>
+						</div>
+												<div class="small  badge ml-3 mt-2" style="font-size: 1rem;color:#000;background:#f8f9fa; box-shadow: -.1768rem -.1768rem .25rem hsla(0,0%,100%,.35),.1326rem .1326rem .3rem rgba(54,100,152,.15),inset 0 0 0 transparent,inset max(1px,.125rem) max(1px,.125rem) max(1px,.25rem) hsla(0,0%,100%,.6);">
+
+					<a  style="color: #8ca1b9;" href="{:mac_url_type($obj.type_1)}"><span><i class="icon-reply"></i></span></a>
+																				
+							</div>
+					</div>
+			
+</div>	
+		
+	
+		
+		
+		<div class="card-thread" >
+		    
+		    
+		    
+				<!---00000000000000000----->
+			<div class="card-body meyan-TB-3">
+			<div style="padding: 0.25rem 1.25rem;">
+
+				<br />
+				<div class="message break-all" isfirst="1">
+								
+					
+					<p><img class="img-thumbnail" src="{:mac_url_img($obj.vod_pic)}" onerror="this.style.display='none'"/></p>
+<p>{$obj.vod_name}&nbsp;{$obj.vod_year|mac_url_create='year'}&nbsp;{$obj.vod_area|mac_url_create='area'}&nbsp;{$obj.vod_class|mac_url_create='class'}&nbsp;{$obj.vod_lang|mac_url_create='lang'}&nbsp;{$obj.vod_time|date='Y.m.d H:s:i',###}&nbsp;{$obj.vod_director|mac_url_create='director'}&nbsp;{$obj.vod_actor|mac_url_create='actor'}&nbsp;{$obj.vod_content|mac_url_content_img}</p>
+{maccms:foreach name="obj.vod_pic_screenshot_list" id="vo"}
+<p><img src="{$vo.url}" alt="{$vo.name}" /></p>
+{/maccms:foreach}
+<p>&nbsp;</p>

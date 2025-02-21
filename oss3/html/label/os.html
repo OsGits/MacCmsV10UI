@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="PYXEL || Ultimate Gaming HTML Template">
+
+    <title>PYXEL</title>
+
+    <!-- Favicon -->
+    
+
+    <!-- All CSS files -->
+    <link rel="stylesheet" href="{$maccms.path_tpl}open1/css/font-awesome.css">
+    <link rel="stylesheet" href="{$maccms.path_tpl}open1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{$maccms.path_tpl}open1/css/app.css">
+
+</head>
+
+<body class="tt-smooth-scroll">
+
+   
+    <!-- Preloader-->
+
+    <!-- Main Wrapper Start -->
+    <div id="scroll-container">
+
+        <!-- HEADER MENU START -->
+        
+
+       
+        <!-- BG-GAME PAGE # 1 START -->
+        <div class="bg-game-page pb-80">
+
+            <section class="title-banner py-80">
+                
+            </section>
+
+            <!-- GAMES SECTION START -->
+            <section class="games-section pb-80">
+                <div class="container-fluid">
+                    <div class="games-wrapper">
+                        <div class="row row-gap-4">
+                            {maccms:vod num="8" type="22" order="desc" by="hits_month"}
+                            <div class="col-xl-3 col-lg-4 col-md-6">
+                                <a href="game-detail.html" class="game-card">
+                                    <div class="game-image shine">
+                                        <img src="{:mac_url_img($vo.vod_pic)}" width="100%" alt="">
+                                    </div>
+                                    <div class="game-content">
+                                        <h4 class="fw-600">86 Lpax</h4>
+                                        <p class="lightest-gray fw-400 mb-12">FPS | Arcade | PC | Mobile </p>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="review-box">
+                                                <div class="box-1 mb-4p">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16" fill="none">
+                                                        <path d="M15.977 6.16432C15.9219 5.9946 15.7752 5.87091 15.5987 5.84529L10.6386 5.12451L8.42034 0.629933C8.3414 0.469933 8.17843 0.368652 8.00003 0.368652C7.82159 0.368652 7.65865 0.469933 7.57968 0.629933L5.36132 5.12451L0.401338 5.84529C0.224808 5.87091 0.0780893 5.9946 0.0229645 6.16429C-0.0321915 6.334 0.0138083 6.52028 0.141589 6.64482L3.73057 10.1434L2.88345 15.0834C2.85327 15.2593 2.92558 15.437 3.06992 15.5419C3.15158 15.6012 3.2483 15.6314 3.34548 15.6314C3.42011 15.6314 3.49498 15.6136 3.56354 15.5776L8 13.2451L12.4363 15.5775C12.5942 15.6606 12.7856 15.6467 12.9299 15.5419C13.0743 15.437 13.1466 15.2593 13.1164 15.0834L12.269 10.1434L15.8584 6.64478C15.9862 6.52028 16.0322 6.334 15.977 6.16432Z" fill="#FFB930"></path>
+                                                    </svg>
+                                                    <p class="subtitle white">4.5</p>
+                                                </div>
+                                                <p class="lightest-gray fw-400">64K Reviews</p>
+                                            </div>
+                                            <div class="review-box">
+                                                <p class="subtitle white">100K</p>
+                                                <p class="subtitle white">Downloads</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {/maccms:vod}
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+            
+
+        </div>
+        <!-- BG-GAME PAGE # 1 END -->
+
+
+        
+    </div>
+   
+
+    <!-- Jquery Js -->
+    <script src="{$maccms.path_tpl}open1/js/bootstrap.min.js"></script>
+    <script src="{$maccms.path_tpl}open1/js/jquery-3.6.3.min.js"></script>
+
+    <script src="{$maccms.path_tpl}open1/js/app.js"></script>
+
+</body>
+
+</html>

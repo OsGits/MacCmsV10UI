@@ -1,0 +1,27 @@
+<div class="card" style="--poster-image: url({:mac_url_img($vo.vod_pic)});">
+    <div class="card-image">
+        <a href="{:mac_url_vod_detail($vo)}">   
+            <img data-src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+        </a>
+    </div>
+    <div class="card-content">
+        <div class="card-header">
+            <h2 class="card-title">
+                <a href="{:mac_url_vod_detail($vo)}">{$vo.vod_name}</a>
+            </h2>
+            <div class="card-score">{$vo.vod_year}</div>
+        </div>
+        <div class="card-tags">
+            <span class="tag">{$vo.vod_area}</span>
+            <span class="tag">{$vo.type.type_name}</span>
+            <span class="tag">{$vo.vod_class}</span>
+            <span class="tag">{$vo.vod_lang}</span>
+        </div>
+        <div class="card-info">                    
+            <p>主演：{$vo.vod_actor}</p>
+        </div>
+        <div class="card-footer">
+            <p>&nbsp;&nbsp;{$vo.vod_blurb|mac_filter_html}</p> 
+        </div>
+    </div>
+</div>

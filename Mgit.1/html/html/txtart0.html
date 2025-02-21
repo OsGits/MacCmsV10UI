@@ -1,0 +1,104 @@
+<li class="media thread tap  " data-href="{:mac_url_art_detail($vo)}" data-tid="24">
+
+						
+
+						<div class="small  mr-1" style="padding: .5rem .6rem .5rem .1rem;"title="发帖日期">
+
+					
+
+					
+
+						<div class="small date badge mr-3 "><span style="font-weight: 500;font-size: 2rem;">{$vo.art_letter}</span>
+
+						<br>{$vo.art_time|date='H:s',###}
+						
+						</div>
+
+					
+
+						</div>
+
+						
+
+
+
+						<div class="media-body">
+
+							<div class="subject break-all mb-2">
+
+
+
+
+
+							<a style="text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);" href="{:mac_url_art_detail($vo)}">{$vo.art_name}</a>
+
+
+
+						</div>
+
+			
+
+							<div class="d-flex justify-content-between small mt-1">
+
+							
+
+								<div>
+
+								<span class=" btn-group" style="font-size: 1rem; box-shadow: 0 0 0 0rem #f8f9fa, 0.442rem 0.442rem 0.625rem rgb(54 100 152 / 20%), -0.442rem -0.442rem 0.625rem hsl(0deg 0% 100% / 70%);border-radius: 1rem;">
+
+									<a  class="badge badge-pill badge-secondary">{$vo.type_1.type_name}</a>
+
+									<a  class="badge badge-pill badge-warning">{$vo.type.type_name}</a>
+
+									<a  class="badge badge-pill badge-primary">{$vo.art_year|mac_default}</a>
+
+									<a  class="badge badge-pill badge-info">{$vo.art_area}</a>
+
+									<a  class="badge badge-pill badge-success">{$vo.art_lang}</a>
+
+								</span>
+
+									
+
+									
+
+								</div>
+
+								<div class="text-muted ">
+
+								
+
+								<span class="username text-grey mr-1 ml-2 " uid="1">
+
+								   
+
+									<span class="ml-2" title="时间">
+
+	                                
+									<span class="ml-2 meyan-TB-2 badge" style="padding: 0.4rem 0.6rem; border-radius: 3.5rem;">
+									<span style="font-size: 1rem;">{$vo.art_time|date='m/d',###}</span>
+									</span>
+
+	                                
+
+	                            </span>
+
+									
+
+
+
+								</div>
+
+						
+
+							</div>
+
+									
+
+						
+
+						</div>
+
+					
+
+					</li>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	
+		
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	<title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果 - {$maccms.site_name} - {$maccms.site_description}！</title>    <meta name="keywords" content="{$maccms.site_keywords}" />    <meta name="description" content="{$maccms.site_description}" />
+	{include file="html/h"}	
+		
+</head>
+
+<body>
+
+	{include file="html/dh"}
+										
+
+	<main id="body">
+		<div class="container">
+
+		
+
+
+
+<div class="row">
+
+	<div class="col-lg-9  ">
+					
+	<div class="header-index-meyan mb-4"style="width: 100%;background-image: url(static/images/17.jpg);background-size: cover;background-attachment: fixed;">
+{include file="html/s"}
+</div>	
+<!--					<table class="small nav_tag_list"><tbody><tr><td class="text-muted text-nowrap" align="right" valign="top">类型：</td><td>{maccms:type ids="parent" order="asc" by="sort"}<a href="{:mac_url_type($vo)}">{$vo.type_name}</a>{/maccms:type}</td></tr>		</tbody></table><br>
+-->
+<div >
+		
+		<div class="card card-threadlist">
+			<!--<div class="card-header mt-2 mb-shee-3">
+				<ul class="nav nav-tabs card-header-tabs">
+				
+					<li class="nav-item">
+						<a class="nav-link  active" href="./index.htm">最新</a>
+					</li>
+					
+						<li class="nav-item">
+		<a class="nav-link  " href="index-1-5.htm">新发布</a>
+	</li>
+ 					<li class="nav-item">
+						<a class="nav-link  " href="index-0-1.htm">精华</a>
+					</li>
+				
+				</ul>
+			</div>-->
+			<div class="card-body">
+				<ul class="list-unstyled threadlist mt-2">
+					
+										<div class="nextpage" data-url="index-2.htm" aria-label=""></div><style>
+@media (max-width: 992px) {
+.card-body {
+
+    padding: 0rem;
+}
+}
+</style>
+
+					{maccms:vod num="10" paging="yes" pageurl="vod/search" level="1" order="desc" by="time"}
+					{include file="html/txt1"}
+					{/maccms:vod}					
+					{maccms:vod num="10" paging="yes" pageurl="vod/search" order="desc" by="time"}
+					{include file="html/txt0"}
+					{/maccms:vod}
+					</ul>					<ul>
+<style>
+.loadmore {
+border-color: #0dcaf0;
+}
+.loading {
+border-color: #f8f9fa;
+}
+.loading_error {
+border-color: #c6303e;
+}
+</style>
+
+				</ul>
+			</div>
+		</div>
+		
+	
+	</div>
+				
+		
+{include file="html/fy"}
+		
+	</div>
+	<div class="col-lg-3  shee-a-a aside">
+	<style>
+.f {
+ 
+  
+font-size: 1.7rem;
+
+    text-align: center;
+    float: left;
+}
+.e {
+    padding: 0.4rem 0.75rem;
+    border-radius: 2.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+    vertical-align: top;
+    float: left;
+    margin: 5.5px;
+}
+.shee-e {
+    font-size: 12px;
+}
+@media (max-width: 992px) {
+.f {
+ 
+  
+font-size: 2.7rem
+
+
+}
+}
+</style>
+
+
+
+
+		
+
+	<div class="card card-mod-info">
+
+			<div class="card-body">
+							<div class="media" style="margin-bottom: 20px;">
+					<h6 class="card-title mr-2">论坛统计</h6>
+					<div class="media-body">
+						<hr  style="border-top: 2px solid rgba(54,100,152,.15);box-shadow: 0 1px hsl(0deg 0% 100% / 80%);">
+				
+					</div>
+					
+								
+				</div>
+			
+					
+
+	<div class="nav-link abc-b  t " style="width: 100%; text-align: left;">
+	<div class="media " >
+					<i class="icon-book " style="font-size: 1.6rem;width: 32px;"></i>
+					<div class="media-body">		
+							<span  style="font-size: 1.1rem;height: 35px;line-height: 35px; text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">
+									全部
+								</span>
+				
+					</div>
+				<div style="font-size: 1.8rem;height: 35px;line-height: 35px; color: rgba(134, 142, 150, 0.8) ">{:mac_data_count(0,'all','vod')}</div>
+							</div>
+				</div>
+	<div class="nav-link abc-b  t " style="width: 100%; text-align: left;">
+	<div class="media " >
+					<i class="icon-comments " style="font-size: 1.6rem;width: 32px;"></i>
+					<div class="media-body">		
+							<span  style="font-size: 1.1rem;height: 35px;line-height: 35px; text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">
+									今日
+								</span>
+				
+					</div>
+				<div style="font-size: 1.8rem;height: 35px;line-height: 35px; color: rgba(134, 142, 150, 0.8) ">{:mac_data_count(0,'today','vod')}</div>
+							</div>
+				</div>				
+	<div class="nav-link abc-b  t " style="width: 100%; text-align: left;">
+	<div class="media " >
+					<i class="icon-user " style="font-size: 1.6rem;width: 32px;"></i>
+					<div class="media-body">		
+							<span  style="font-size: 1.1rem;height: 35px;line-height: 35px; text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">
+									会员
+								</span>
+				
+					</div>
+				<div style="font-size: 1.8rem;height: 35px;line-height: 35px; color: rgba(134, 142, 150, 0.8) ">未开放</div>
+							</div>
+				</div>
+				
+	<div class="nav-link abc-b  t " style="width: 100%; text-align: left;">
+	<div class="media " >
+					<i class="icon-desktop " style="font-size: 1.5rem;width: 32px;"></i>
+					<div class="media-body">		
+							<span  style="font-size: 1.1rem;height: 35px;line-height: 35px; text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">
+									在线
+								</span>
+				
+					</div>
+				<div style="font-size: 1.8rem;height: 35px;line-height: 35px; color: rgba(134, 142, 150, 0.8) ">123</div>
+							</div>
+				</div>
+				
+					
+
+
+			
+				
+			
+			</div>
+
+
+
+			
+			
+			
+			
+		</div>
+		
+
+	
+		
+
+<style>
+
+.message-2 {
+    white-space: nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	font-size: 15px;
+    line-height: 2.0;
+    position: relative;
+    text-align: justify;
+}
+
+.thread-2 {
+
+    margin-bottom: 20px;
+    padding: 0px 0 20px;
+    border-bottom: 0px dotted #e0e0e0;
+    margin-bottom: 18px;
+    border-radius: 5px;
+    background: #fff;
+    padding: 10px;
+    width: 100%;
+
+    overflow: hidden;
+    padding: 0.5rem;
+}
+</style>
+<div class="card card-mod-info">
+			<div class="card-body">
+<div class="media" style="margin-bottom: 20px;">
+					<h6 class="card-title mr-2">随机帖子</h6>
+					<div class="media-body">
+						<hr  style="border-top: 2px solid rgba(54,100,152,.15);box-shadow: 0 1px hsl(0deg 0% 100% / 80%);">
+				
+					</div></div>
+					<div>
+			<ul class="list-unstyled threadlist mb-0">
+					{maccms:vod num="10" type=""  order="desc" by="rnd"}					<li class="media thread-4 tap " data-href="?thread-10.htm">					<a class="message-2" href="{:mac_url_vod_detail($vo)}">&nbsp;&nbsp;{$vo.vod_name} {if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}</a>					</li>					{/maccms:vod}
+                        
+            </ul>
+					</div>
+					</div>
+					</div>
+
+		</div>
+
+</div>
+
+
+
+				
+			
+		
+				
+		</div>
+	</main>
+	{include file="html/f"}
+	
+	
+</body>
+
+</html>

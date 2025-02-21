@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发现 :: {$maccms.site_name} :: {$maccms.site_description}！</title>
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color: #f1f1f1;
+    }
+
+    li {
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    li a img {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+    }
+
+    li p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+   
+  </style>
+</head>
+
+<body>
+	<div style="padding: 20px;">
+	<br /><br />
+	<h3>&nbsp;&nbsp;&nbsp;&nbsp;☍发现</h3>
+  <ul>
+    <li>
+      <a href="{:mac_url('vod/search')}">
+        <img src="{$maccms.path_tpl}img/vod.svg">
+        最新视频
+      </a>
+      <p>岸影圈最新视频更新表！</p>
+    </li>
+	
+	
+    <li>
+      <a href="https://www.mgit.cc">
+        <img src="{$maccms.path_tpl}img/vpn.svg">
+       浏览器VPN
+      </a>
+      <p>在免费VPN浏览器里输入要访问的任意网站，都可访问！</p>
+    </li>
+	
+    <li>
+      <a href="{:mac_url('vod/search')}">
+        <img src="{$maccms.path_tpl}img/so.svg">
+        视频搜索
+      </a>
+      <p>搜索已上市视频资源免费获取！</p>
+    </li>
+    <!-- 更多导航项 -->
+  </ul>
+  {$maccms.site_tj}
+  </div>
+  {include file="html/dh"}
+</body>
+
+</html>

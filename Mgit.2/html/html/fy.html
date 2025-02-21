@@ -1,0 +1,33 @@
+<div class="row">
+          <div class="col-lg-12 text-center">
+            <div class="pagination-area">
+              <nav>
+                <ul class="page-numbers d-inline-flex">
+				{if condition="$__PAGING__.record_total gt 0"}
+					<li>
+                    <a class="page-number next" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}">
+                      ⇤
+                    </a>
+                  </li>
+					{maccms:foreach name="$__PAGING__.page_num" id="num"}
+					{if condition="$__PAGING__['page_current'] eq $num"}
+                  <li>
+                    <a class="page-number active" href="javascript:;">{$num}</a>
+                  </li>
+				  {else}
+                  <li>
+                    <a class="page-number" href="{$__PAGING__.page_url|mac_url_page=$num}">{$num}</a>
+                  </li>
+				  	{/if}
+					{/maccms:foreach}                  
+                  <li>
+                    <a class="page-number next" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}">
+                      ⇥
+                    </a>
+                  </li>
+				  {/if}
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>

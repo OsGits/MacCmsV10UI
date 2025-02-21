@@ -1,0 +1,17 @@
+{include file="vod/d1"}              
+			<div class="candidate-details-wrap">  
+			  <h4 class="content-title">线路 & Play</h4>              
+                <div class="candidate-details-content">
+                  <div class="content-item">
+				  {maccms:foreach name="obj.vod_play_list" id="vo" key="key"}
+                    <h4 class="title">
+					<a href="{$maccms.site_wapurl}/d/1I{$obj.vod_id}I{$vo.sid}" target="_blank">☍{$vo.player_info.show}</a>
+					<span>//</span> <span>{$vo.player_info.tip}</span></h4>                    
+                    <p class="desc">
+					
+					</p>
+					{/maccms:foreach}
+                  </div>                  
+                </div>
+              </div>
+{include file="vod/d2"}

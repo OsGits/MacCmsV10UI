@@ -1,0 +1,63 @@
+<!--style>
+
+@font-face {
+
+font-family: 'CustomFont'; /* 自定义字体名称 */
+
+src: url('{$maccms.path_tpl}woff/w03.woff') format('woff'); /* 自定义字体文件路径和格式 */
+
+}
+
+body {
+
+font-family: 'CustomFont', sans-serif; /* 使用自定义字体，如果加载失败则使用备用字体 */
+
+}
+
+</style-->
+<script type="text/javascript">
+var targetProtocol = "https:";
+if (window.location.protocol != targetProtocol)
+ window.location.href = targetProtocol +
+  window.location.href.substring(window.location.protocol.length);
+</script>
+<footer class="text-muted small bg-dark py-4 mt-3" id="footer">
+
+	<div class="container">
+
+		<div class="row">
+
+			<!--<div class="col">
+			</div>-->
+			<div class="col text-right">By <a class="badge badge-danger" href="/" target="_blank" title="shee.cc">VodX.Cc</a> {$maccms.site_tj} </div>
+		</div>
+
+	</div>
+
+</footer>
+<!--[if ltg IE 9]>
+
+	<script>window.location = 'browser.htm';</script>
+
+	<![endif]-->
+	<script src="{$maccms.path_tpl}js/jquery-3.1.0.js"></script>
+	<script src="{$maccms.path_tpl}js/popper.js"></script>
+	<script src="{$maccms.path_tpl}js/bootstrap.js"></script>
+	<script src="{$maccms.path_tpl}js/xiuno.js"></script>
+	<script src="{$maccms.path_tpl}js/bootstrap-plugin.js"></script>
+	<script src="{$maccms.path_tpl}js/async.js"></script>
+	<script src="{$maccms.path_tpl}js/form.js"></script>
+	<script src="{$maccms.path_tpl}js/bbs.js"></script>
+
+<script>
+$('li[data-active="fid-0"]').addClass('active');
+</script>
+<script>
+jsearch_form = $('#search_form');
+jsearch_form.on('submit', function() {
+	var keyword = jsearch_form.find('input[name="keyword"]').val();
+	var url = xn.url('search-'+xn.urlencode(keyword));
+	window.location = url;
+	return false;
+});
+</script>

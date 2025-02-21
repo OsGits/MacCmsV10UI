@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+
+<head>
+
+	
+
+		
+
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{$obj.type_name}：{$obj.type_name}在线阅读 - {$obj.type_name}下载 - 最新{$obj.type_name} - 推荐{$obj.type_name} - 第{$param.page}页 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.type_name}在线阅读,{$obj.type_name}下载{$obj.type_name},最新{$obj.type_name},推荐{$obj.type_name}" />
+    <meta name="description" content="提供最新的{$obj.type_name}内容介绍与分享！" />
+
+	{include file="html/h"}
+	
+		
+
+</head>
+
+
+
+<body>
+
+
+
+	{include file="html/dh"}
+
+										
+
+
+
+	<main id="body">
+
+		<div class="container">
+
+
+
+		
+
+
+
+
+
+
+
+<div class="row">
+
+
+
+	<div class="col-lg-9  ">
+
+					
+
+	
+
+<div class="header-index-meyan mb-5" style="width: 100%;height: 110px;background-image: url({maccms:vod num="1" paging="yes" pageurl="vod/type" type="current" order="desc" by="time"}{:mac_url_img($vo.art_pic)}{/maccms:vod});background-size: cover;background-attachment: fixed;" onerror="this.style.display='none'">
+
+<div class="media ">
+	<div class=" mr-5" style=" overflow:hidden;">	
+
+<img class="logo-4 mb-2 mr-4" src="/template/XgitNet.1//picture/logo.png" style=" position: absolute;  width: 7rem; height: 7rem; border-radius: 0.6rem;display: inline-block;text-align: center;box-shadow: 0 0 0 0.125rem #ffffff, 0.442rem 0.442rem 0.625rem var(--gray-700), -0.2rem -0.2rem 0.625rem hsl(0deg 0% 100% / 70%);" onerror="this.style.display='none'">
+
+		</div>				
+						<div class="media-body" style="margin-left: 5.5rem ;">
+							<div class="subject break-all">
+
+<h5>					<span>{$maccms.site_name}{$obj.type_title}</span>
+				</h5>
+																
+							</div>
+							<div class="small ">
+								<div>
+
+										<span style="
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+height: 38px;
+
+">&nbsp;{$maccms.site_description}</span>
+									
+																		
+
+								</div>
+								
+							</div>
+						</div>
+					</div>
+			
+</div>
+
+
+					
+				{include file="vod/vodfl"}
+			
+			
+			
+			
+			
+									
+
+
+
+<div >
+
+		
+
+		<div class="card card-threadlist">
+
+			<div class="card-header mt-2 mb-shee-3">
+
+				<ul class="nav nav-tabs card-header-tabs">
+
+				
+
+					<li class="nav-item">
+
+						<a class="nav-link  active" href="./index.htm">最新</a>
+
+					</li>
+
+					
+
+						<li class="nav-item">
+
+		<a class="nav-link  " href="index-1-5.htm">新发布</a>
+
+	</li>
+
+ 					<li class="nav-item">
+
+						<a class="nav-link  " href="index-0-1.htm">精华</a>
+
+					</li>
+
+				
+
+				</ul>
+
+			</div>
+
+			<div class="card-body">
+
+				<ul class="list-unstyled threadlist mt-2">
+
+					
+
+										<div class="nextpage" data-url="index-2.htm" aria-label=""></div><style>
+
+@media (max-width: 992px) {
+
+.card-body {
+
+
+
+    padding: 0rem;
+
+}
+
+}
+
+</style>
+
+					
+
+													
+
+					
+					
+					
+					
+					
+					{maccms:art num="3" paging="yes" pageurl="art/type" level="1" type="current" order="desc" by="time"}
+					{include file="html/txtart1"}
+					{/maccms:art}
+					{maccms:art num="{include file="html/txtx"}" paging="yes" pageurl="art/type" type="current" order="desc" by="time"}
+					{include file="html/txtart0"}
+					{/maccms:art}
+					
+
+					</ul>
+					<ul>
+
+<style>
+
+.loadmore {
+
+border-color: #0dcaf0;
+
+}
+
+.loading {
+
+border-color: #f8f9fa;
+
+}
+
+.loading_error {
+
+border-color: #c6303e;
+
+}
+
+</style>
+
+
+
+				</ul>
+
+			</div>
+
+		</div>
+
+		
+
+	
+
+	</div>
+
+				
+
+		
+
+{include file="html/fy"}
+
+		
+
+	</div>
+
+	<div class="col-lg-3  shee-a-a aside">
+
+	<style>
+
+.f {
+
+ 
+
+  
+
+font-size: 1.7rem;
+
+
+
+    text-align: center;
+
+    float: left;
+
+}
+
+.e {
+
+    padding: 0.4rem 0.75rem;
+
+    border-radius: 2.5rem;
+
+    margin-bottom: 15px;
+
+    text-align: center;
+
+    vertical-align: top;
+
+    float: left;
+
+    margin: 5.5px;
+
+}
+
+.shee-e {
+
+    font-size: 12px;
+
+}
+
+@media (max-width: 992px) {
+
+.f {
+
+ 
+
+  
+
+font-size: 2.7rem
+
+
+
+
+
+}
+
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+		
+
+
+
+	{include file="html/tj"}
+
+		
+
+
+
+	
+
+	{include file="html/s"}
+
+
+
+<style>
+
+
+
+.message-2 {
+
+    white-space: nowrap;
+
+	overflow:hidden;
+
+	text-overflow:ellipsis;
+
+	font-size: 15px;
+
+    line-height: 2.0;
+
+    position: relative;
+
+    text-align: justify;
+
+}
+
+
+
+.thread-2 {
+
+
+
+    margin-bottom: 20px;
+
+    padding: 0px 0 20px;
+
+    border-bottom: 0px dotted #e0e0e0;
+
+    margin-bottom: 18px;
+
+    border-radius: 5px;
+
+    background: #fff;
+
+    padding: 10px;
+
+    width: 100%;
+
+
+
+    overflow: hidden;
+
+    padding: 0.5rem;
+
+}
+
+</style>
+
+<div class="card card-mod-info">
+
+			<div class="card-body">
+
+<div class="media" style="margin-bottom: 20px;">
+
+					<h6 class="card-title mr-2">随机帖子</h6>
+
+					<div class="media-body">
+
+						<hr  style="border-top: 2px solid rgba(54,100,152,.15);box-shadow: 0 1px hsl(0deg 0% 100% / 80%);">
+
+				
+
+					</div></div>
+
+					<div>
+
+			<ul class="list-unstyled threadlist mb-0">
+
+					{maccms:vod num="10" type=""  order="desc" by="rnd"}
+					<li class="media thread-4 tap " data-href="?thread-10.htm">
+					<a class="message-2" href="{:mac_url_vod_detail($vo)}">&nbsp;&nbsp;{$vo.art_name} {if condition="$vo.art_serial gt 0"}第{$vo.art_serial}集/共{$vo.art_total}集{else/}{$vo.art_remarks}{/if}</a>
+					</li>
+					{/maccms:vod}
+
+                        
+
+            </ul>
+
+					</div>
+
+					</div>
+
+					</div>
+
+
+
+		</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+				
+
+			
+
+		
+
+				
+
+		</div>
+
+	</main>
+
+
+	
+{include file="html/f"}
+	
+
+	
+
+</body>
+
+
+
+</html>

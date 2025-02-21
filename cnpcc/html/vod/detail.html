@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影视展示</title>
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('{$maccms.path_tpl}img/zt.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            font-family: 'CustomFont', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+        }
+        .wrapper {
+            width: 100%;
+            height: auto;
+            max-height: calc(100vw * 4 / 3);
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .movie-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            width: 100%;
+            height: 100%;
+        }
+        .movie {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .movie::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: inherit;
+            background-size: inherit;
+            background-position: inherit;
+            background-repeat: inherit;
+            filter: blur(5px);
+            z-index: 1;
+        }
+        .poster {
+            flex: 0 0 auto;
+            width: 30%;
+            aspect-ratio: 3 / 5;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-right: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        .poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .movie-info {
+            flex: 1;
+            position: relative;
+            margin: 0;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+            text-align: left;
+            width: 60%;
+            z-index: 2;
+        }
+        .movie-info-content {
+            position: relative;
+            z-index: 3;
+            padding: 10px;
+        }
+        .movie-info h3 {
+            font-size: 12px;
+            margin: 0 0 10px 0;
+            max-width: 100%;
+        }
+        .movie-info p {
+            margin: 0;
+            font-size: 8px;
+            max-width: 100%;
+        }
+        .movie-info p:last-child {
+            font-size: 10px;
+            margin-top: 5px;
+        }
+        .movie-info p:not(:last-child) {
+            margin-left: 10px;
+        }
+        .gradient-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to left, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+            z-index: 1;
+            pointer-events: none;
+            filter: blur(5px);
+        }
+        .stars {
+            margin-bottom: 5px;
+        }
+        .star {
+            color: gold;
+            font-size: 14px;
+            margin-right: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="movie-container">
+            <div class="movie" style="background-image: url('{:mac_url_img($obj.vod_pic)}');">
+                <div class="poster">
+                    <img src="{:mac_url_img($obj.vod_pic)}" alt="{$obj.vod_name}" draggable="false">
+                </div>
+                <div class="gradient-mask"></div>
+                <div class="movie-info">
+                    <div class="movie-info-content">
+                        <div class="stars">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <h3>片名: {$obj.vod_name}</h3>
+                        <p>☑ 类型: {$obj.type.type_name}&nbsp;{$obj.vod_class|mac_default='视频类'}</p>
+                        <p>☑ 年份: {$obj.vod_year|mac_default='今天前'}</p>
+                        <p>☑ 地区: {$obj.vod_area|mac_default='地球上拍的'}</p>
+                        <p>{$obj.vod_blurb|mac_substring=70}…</p>
+                    </div>
+                </div>
+            </div>
+            {maccms:vod num="2" type="current" order="desc" by="rnd"}
+            <div class="movie" style="background-image: url('{:mac_url_img($vo.vod_pic)}');">
+                <div class="poster">
+                    <img src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}" draggable="false">
+                </div>
+                <div class="gradient-mask"></div>
+                <div class="movie-info">
+                    <div class="movie-info-content">
+                        <div class="stars">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <h3>片名: {$vo.vod_name}</h3>
+                        <p>☑ 类型: {$vo.type.type_name}&nbsp;{$vo.vod_class|mac_default='视频类'}</p>
+                        <p>☑ 年份: {$vo.vod_year|mac_default='今天前'}</p>
+                        <p>☑ 地区: {$vo.vod_area|mac_default='地球上拍的'}</p>
+                        <p>{$vo.vod_blurb|mac_substring=70}…</p>
+                    </div>
+                </div>
+            </div>
+            {/maccms:vod}    
+        </div>
+    </div>
+    <br><br><li><a href="{:mac_url_type($obj.type)}">{$obj.type.type_name}</a></li>
+    <script>
+        document.querySelectorAll('.movie img').forEach(img => {
+            let isDragging = false;
+            let startY = 0;
+            let currentY = 0;
+            let translateY = 0;
+
+            const startDrag = (y) => {
+                isDragging = true;
+                startY = y - translateY;
+                img.style.cursor = 'grabbing';
+            };
+
+            const duringDrag = (y) => {
+                if (!isDragging) return;
+                currentY = y - startY;
+                translateY = currentY;
+                img.style.transform = `translateY(${translateY}px)`;
+            };
+
+            const endDrag = () => {
+                isDragging = false;
+                img.style.cursor = 'grab';
+            };
+
+            img.addEventListener('mousedown', (e) => startDrag(e.clientY));
+            window.addEventListener('mousemove', (e) => duringDrag(e.clientY));
+            window.addEventListener('mouseup', endDrag);
+
+            img.addEventListener('touchstart', (e) => startDrag(e.touches[0].clientY));
+            window.addEventListener('touchmove', (e) => duringDrag(e.touches[0].clientY));
+            window.addEventListener('touchend', endDrag);
+        });
+    </script>
+</body>
+</html>

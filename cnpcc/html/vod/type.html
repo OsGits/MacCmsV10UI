@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影视展示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #ffffff;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 2000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+            padding: 20px;
+        }
+
+        /* 响应式布局 */
+        @media screen and (max-width: 2000px) {
+            .container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 1600px) {
+            .container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 0;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+                padding: 0;
+                gap: 3px;
+                max-width: none;
+            }
+
+            .card {
+                min-width: 100%;
+                aspect-ratio: auto;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+                border-bottom: 1px solid #eee;
+                height: 160px;
+                padding: 12px;
+            }
+
+            .card-image {
+                width: 80px;
+                height: calc(80px * 4/3);
+            }
+
+            .card-image img {
+                height: 100%;
+                width: auto;
+                object-fit: cover;
+            }
+        }
+
+        .card {
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: row;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            gap: 15px;
+            aspect-ratio: 16/7;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            background-image: var(--poster-image);
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            opacity: 0.8;
+            z-index: -2;
+            transform: scale(1.3);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.3)
+            );
+            z-index: -1;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-image {
+            display: block;
+            width: 120px;
+            height: calc(120px * 4/3);
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            background: #f0f0f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover .card-image {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        @media screen and (max-width: 768px) {
+            .card-image {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        .card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                #f0f0f0 0%,
+                #e0e0e0 50%,
+                #f0f0f0 100%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+            z-index: 1;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-image img.loaded {
+            opacity: 1;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .card-content {
+            flex: 1;
+            min-width: 0;
+            padding: 0;
+        }
+
+        .card-header {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000000;
+            word-wrap: break-word;
+            word-break: break-all;
+            flex: 1;
+            padding-right: 12px;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-title::before {
+            content: '📺';  /* 使用 Unicode 电视图标 */
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        .card-score {
+            background: #ff9800;
+            color: white;
+            padding: 3px 6px;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            padding: 2px 8px;
+            background: rgba(255, 255, 255, 0.7);
+            font-size: 11px;
+            color: #666666;
+            backdrop-filter: blur(3px);
+        }
+
+        .card-info {
+            font-size: 12px;
+            color: #333333;
+            line-height: 1.5;
+            word-wrap: break-word;
+            word-break: break-all;
+            margin-bottom: 8px;
+        }
+
+        .card-info p {
+            margin-bottom: 8px;
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            max-height: 1.5em;
+            line-height: 1.5;
+        }
+
+        .card-info p::before {
+            display: none;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid #eeeeee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .view-details {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: #2196F3;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .view-details:hover {
+            color: #1976D2;
+        }
+
+        .arrow {
+            margin-left: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .view-details:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .update-time {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .card-footer p {
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            max-height: 3em;
+            font-size: 12px;
+            color: #333333;
+            line-height: 1.5;
+            word-wrap: break-word;
+            word-break: break-all;
+            margin: 0;
+            text-indent: 2em;
+        }
+
+        /* 更新分页样式 */
+        .pagination {
+            margin-top: 40px;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .pagination-info {
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .pagination-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .pagination-links a, 
+        .pagination-links span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+            height: 36px;
+            padding: 0 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #666666;
+            text-decoration: none;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-links a:hover {
+            background: #f5f5f5;
+            color: #2196F3;
+            border-color: #2196F3;
+        }
+
+        .pagination-links span.current {
+            background: #2196F3;
+            color: #ffffff;
+            border-color: #2196F3;
+        }
+
+        .pagination-jumper {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .jump-link {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .jump-link:hover {
+            color: #2196F3;
+        }
+
+        .page-nav {
+            font-size: 16px;
+        }
+
+        /* 响应式布局调整 */
+        @media screen and (max-width: 1600px) {
+            .card-image {
+                width: 105px;
+                height: calc(105px * 4/3);
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            .card-image {
+                width: 90px;
+                height: calc(90px * 4/3);
+            }
+        }
+
+        
+
+        /* 移除文字阴影相关样式 */
+        .card-title, .card-info p, .card-footer p {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 添加标题链接样式 */
+        .card-title a {
+            color: inherit;  /* 继承父元素颜色 */
+            text-decoration: none;  /* 移除下划线 */
+            transition: color 0.3s ease;  /* 添加颜色过渡效果 */
+        }
+
+        .card-title a:hover {
+            color: #2196F3;  /* 悬停时变色 */
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.card-image');
+            
+            images.forEach(container => {
+                const img = container.querySelector('img');
+                let isDragging = false;
+                let startY;
+                let scrollTop;
+
+                function getYPosition(e) {
+                    // 统一处理触摸和鼠标事件的Y坐标
+                    return e.touches ? e.touches[0].pageY : e.pageY;
+                }
+
+                function startDragging(e) {
+                    isDragging = true;
+                    startY = getYPosition(e) - container.offsetTop;
+                    scrollTop = parseFloat(img.style.transform?.replace('translateY(', '') || 0);
+                    container.style.cursor = 'grabbing';
+                }
+
+                function drag(e) {
+                    if (!isDragging) return;
+                    e.preventDefault(); // 防止页面滚动
+
+                    const y = getYPosition(e) - container.offsetTop;
+                    const walk = (y - startY) * 1;
+                    let newPosition = scrollTop + walk;
+
+                    // 限制滚动范围
+                    newPosition = Math.max(-50, Math.min(0, newPosition));
+                    img.style.transform = `translateY(${newPosition}%)`;
+                }
+
+                function stopDragging() {
+                    isDragging = false;
+                    container.style.cursor = 'grab';
+                }
+
+                // 鼠标事件
+                container.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    startDragging(e);
+                });
+                
+                document.addEventListener('mousemove', (e) => {
+                    drag(e);
+                });
+                
+                document.addEventListener('mouseup', stopDragging);
+
+                // 触摸事件
+                container.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    startDragging(e);
+                });
+                
+                document.addEventListener('touchmove', (e) => {
+                    drag(e);
+                }, { passive: false });
+                
+                document.addEventListener('touchend', stopDragging);
+
+                // 防止拖动时选中文本
+                container.addEventListener('selectstart', e => e.preventDefault());
+            });
+
+            // 修改懒加载功能
+            const lazyLoadImages = () => {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            const actualSrc = img.getAttribute('data-src');
+                            if (actualSrc) {
+                                img.onload = () => {
+                                    img.classList.add('loaded'); // 图片加载完成后添加 loaded 类
+                                };
+                                img.src = actualSrc;
+                                img.removeAttribute('data-src');
+                                observer.unobserve(img);
+                            }
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.01
+                });
+
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            };
+
+            lazyLoadImages();
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        {maccms:vod num="32" paging="yes" pageurl="vod/type" type="current" order="desc" by="time"}
+        <div class="card" style="--poster-image: url({$vo.vod_pic});">
+            <div class="card-image">
+                <img data-src="{$vo.vod_pic}" alt="{$vo.vod_name}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <a href="{:mac_url_vod_detail($vo)}">{$vo.vod_name}</a>
+                    </h2>
+                    <div class="card-score">{$vo.vod_year}</div>
+                </div>
+                <div class="card-tags">
+                    <span class="tag">{$vo.vod_area}</span>
+                    <span class="tag">{$vo.type.type_name}</span>
+                    <span class="tag">{$vo.vod_class}</span>
+                    <span class="tag">{$vo.vod_lang}</span>
+                </div>
+                <div class="card-info">                    
+                    <p>主演：{$vo.vod_actor}</p>
+                </div>
+                <div class="card-footer">
+                    <p>&nbsp;&nbsp;{$vo.vod_blurb|mac_filter_html}</p> 
+                </div>
+            </div>
+        </div>
+        {/maccms:vod}
+    </div>
+
+    <!-- 替换分页部分 -->
+    <div class="pagination">
+        <center>
+        {if condition="$__PAGING__.record_total gt 0"}
+        <div class="pagination-info">共{$__PAGING__.record_total}条数据,当前{$__PAGING__.page_current}/{$__PAGING__.page_total}页</div>
+
+        <div class="pagination-links">
+            <a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}" class="page-nav">
+                <b>⇍</b>
+            </a>
+            
+            {maccms:foreach name="$__PAGING__.page_num" id="num"}
+                {if condition="$__PAGING__['page_current'] eq $num"}
+                    <span class="current">{$num}</span>
+                {else}
+                    <a href="{$__PAGING__.page_url|mac_url_page=$num}">{$num}</a>
+                {/if}
+            {/maccms:foreach}
+            
+            <a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}" class="page-nav">
+                <b>⇏</b>
+            </a>
+        </div>
+
+        <div class="pagination-jumper">
+            <a href="{$__PAGING__.page_url|mac_url_page=1}" class="jump-link">
+                <b>↞ 第1页</b>
+            </a>
+            <a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}" class="jump-link">
+                <b>第{$__PAGING__.page_total}页 ↠</b>
+            </a>
+        </div>
+
+        {else/}
+        <h1>没有找到匹配数据</h1>
+        {/if}
+        </center>
+    </div>
+</body>
+</html>

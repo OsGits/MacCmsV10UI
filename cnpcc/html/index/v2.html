@@ -1,0 +1,53 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{$maccms.site_name}</title>
+  <link rel="stylesheet" href="{$maccms.path_tpl}html/index/v2.css?v27">
+  <script src="{$maccms.path_tpl}img/lazyload.js?v0002"></script>
+</head>
+<body>
+
+  <nav>
+    <ul>
+
+      <a href="/" ><li class="container"><img src="{$maccms.path_tpl}img/首页.svg" height="25px">首页</li></a>
+      <a href="/appso.html" ><li class="container"><img src="{$maccms.path_tpl}img/sso.svg" height="25px">搜索</li></a>
+      <a href="/appf.html" ><li class="container"><img src="{$maccms.path_tpl}img/fl.svg" height="25px">更多</li></a>
+    </ul>
+  </nav>
+
+
+<div class="waterfall">
+  {maccms:vod num="30" level="1" paging="yes" pageurl="index/index" type="current" order="desc" by="time"}
+    <div class="image-container">
+      <img src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name},{$vo.vod_name}海报,{$vo.vod_name}详情,{$vo.vod_name}在线播放,{$vo.vod_name}全集">
+      <div class="image-details">
+        <a href="{:mac_url_vod_detail($vo)}" target="_blank">
+        <h3>🎬&nbsp;{$vo.vod_name}</h3>
+        <p>{$vo.vod_year|mac_default='未知'}年/{$vo.vod_class}/{$vo.vod_area|mac_default='地球上拍的'}</p>
+        <p>{$vo.vod_time|date='m/d y H:i',###}&nbsp;{if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}</p>
+        </a>
+      </div>
+      <div class="icon-container">
+        <a href="{:mac_url_vod_detail($vo)}" target="_blank">
+        <img src="{$maccms.path_tpl}img/bf2s.svg" alt="{$vo.vod_name},{$vo.vod_name}海报,{$vo.vod_name}详情,{$vo.vod_name}在线播放,{$vo.vod_name}全集" class="center-icon">
+        </a>
+      </div>
+    </div>
+  {/maccms:vod}
+</div>
+<br><br>
+<div class="notice-board">
+  <h2>{$maccms.site_name}：</h2>
+  <p>
+  数据库版本：V{maccms:vod num="1" paging="yes"  type="current" order="desc" by="time"}{$vo.vod_time|date='y.md.His',###}{/maccms:vod}<br>
+  Copyright © CnP.Cc『影评中文盘』{$maccms.site_tj}
+  
+  
+      
+  </p>
+</div>
+</body>
+</html>

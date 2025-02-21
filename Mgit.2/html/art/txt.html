@@ -1,0 +1,6 @@
+                  <div class="content-item">
+                    <h4 class="title">
+					☍<a style="font-size: 15px;" href="{:mac_url_art_detail($vo)}" target="_blank" >{$vo.art_name}</a><span>//</span><span style="font-size: 12px;">{if condition="$vo.art_serial gt 0"}第{$vo.art_serial}集/共{$vo.art_total}集{else/}{$vo.art_remarks}{/if}&nbsp;{$vo.art_time|date='m,d Y',###}</span></h4>
+                    
+                    <p class="desc" style="font-size: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;{$vo.art_blurb}&nbsp;</p>
+                  </div>

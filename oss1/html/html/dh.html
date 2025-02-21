@@ -1,0 +1,15 @@
+{maccms:type ids="22,23" order="asc" by="sort" id="vo1" key="key1"}
+<br><b>{$vo1.type_name}：</b><br>
+{if condition="$key1 lt 50"}
+{maccms:type parent="'.$vo1['type_id'].'" order="asc" by="sort" id="vo2" key="key2"}
+<a href="{:mac_url_type($vo2,[],'type')}">{$vo2.type_name}</a>&emsp;
+{/maccms:type}
+{/if}
+{/maccms:type}
+
+<br>
+<b>服务中心：</b><br>
+<a href="https://www.mgit.cc/b" target="_blank">岸影圈</a>&emsp;
+<a href="https://www.mgit.cc/" target="_blank">免费DNS</a>&emsp;
+
+

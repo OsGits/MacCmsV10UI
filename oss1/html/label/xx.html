@@ -1,0 +1,85 @@
+<?php $id=isset($_GET['id'])?$_GET['id']:''; ?>
+<br>
+<!DOCTYPE html><html>
+<title>影片搜索</title>
+    
+    <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="//www.mgit.cc/cdn/mi/key1.css">
+    <meta name="viewport"content="width=device-width, initial-scale=1.0">
+    <style>form{width:90%;margin:0 auto;text-align:left}</style>
+    
+    </head>
+    <body>
+    <meta charset="UTF-8">
+    
+    
+	<form  action="?id" method="get" >
+	<input type="text" placeholder="请输入搜索关键词" name="id" x-webkit-speech lang="zh-CN">
+	<input type="submit" id="searchbutton"   value="搜索影片" />
+    
+
+    <br><br>
+		<?php
+// 远程文件的URL
+$fileUrl = 'http://81.70.144.104/oss/v1.txt';
+// 模糊关键字
+$keyword = $id;
+
+// 从远程获取文件内容
+$content = file_get_contents($fileUrl);
+if ($content !== false) {
+    // 尝试检测文件内容的编码
+    $encoding = mb_detect_encoding($content, ['UTF-8', 'GBK', 'GB2312', 'BIG5']);
+
+    // 如果检测到的编码不是UTF-8，则进行转换
+    if ($encoding !== 'UTF-8') {
+        $content = mb_convert_encoding($content, 'UTF-8', $encoding);
+    }
+
+    // 将文件内容按行分割
+    $lines = explode("\n", $content);
+    // 初始化一个计数器，用于记录匹配的行数
+    $matchCount = 0;
+
+    // 遍历文件的每一行
+    foreach ($lines as $line) {
+        // 检查当前行是否包含模糊关键字
+        if (strpos($line, $keyword) !== false) {
+            // 输出包含关键字的行
+            echo nl2br('<!--列表开始-->https://vo.vodx.cc/play/'.$line);
+            $matchCount++;
+        }
+    }
+
+    // 如果没有找到任何匹配的行，则输出提示信息
+    if ($matchCount === 0) {
+        echo '未找到包含关键字的内容。';
+    }
+} else {
+    // 如果无法从远程获取文件内容，则输出错误信息
+    echo '无法获取远程文件内容。请检查URL是否正确，以及服务器是否允许访问该文件。';
+}
+?>
+		<br><br><br><br><!--输入框下提示-->
+		<font size="1">
+		：需要输入访问密钥，下为免费获取密钥的方法<br>
+		：<a href="https://www.mgit.cc/b/forum.php?mod=viewthread&tid=3&page=1#pid19">密钥<b>100%免费</b>获取方法！</a>
+		<br>
+		Copyright © 𝑴𝒈𝒊𝒕.𝑪𝒄『极速全球』<br>
+		</font>
+
+		
+		
+		<!--输入框下提示-->
+		</form>
+
+
+		</body>
+		</html>
+
+
+
+<?php
+
+ ?>

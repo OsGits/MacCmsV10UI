@@ -1,0 +1,96 @@
+<html>
+    <title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}</title>
+    <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{$maccms.path_tpl}css/bootstrap.min.css">
+    <meta name="viewport"content="width=device-width, initial-scale=1.0">
+    <style>form{width:80%;margin:0 auto;text-align:left}</style>
+    </head>
+    <body>
+    <meta charset="UTF-8">
+    <form method="post">
+    <br><br>
+    <h5>：引擎Api提示</h5>
+    ：数据库共<b>{:mac_data_count(0,'all','vod')}</b>条数据<br>
+    ：今日收录<b>{:mac_data_count(0,'today','vod')}</b>条数据<br>
+    ：关于[<b>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}</b>]{maccms:vod num="88" paging="yes" pageurl="vod/search" order="desc" by="time"}{/maccms:vod}{if condition="$__PAGING__.record_total gt 0"}共计<b>{$__PAGING__.record_total}</b>条结果{else/}暂无结果{/if}<br>
+    ：内容访问密钥均为<b>8888</b><br>
+    ：引擎无法直接浏览内容！<br>
+    ：请点击下方的方框复制到浏览器打开！<br>
+<style>#magnet_c:hover .magnet_b{display: block !important;}</style>
+<script>
+    /**复制文本 */
+function copyText(node) {
+    if (!node) {
+        return;
+    }
+    var result;
+    // 将复制内容添加到临时textarea元素中
+    var tempTextarea = document.createElement('textarea');
+    document.body.appendChild(tempTextarea);
+    if (typeof(node) == 'object') {
+        // 复制节点中内容
+        // 是否表单
+        if (node.value) {
+            tempTextarea.value = node.value;
+        } else {
+            tempTextarea.value = node.innerHTML;
+        }
+    } else {
+        // 直接复制文本
+        tempTextarea.value = node;
+    }
+    // 判断设备
+    var u = navigator.userAgent;
+    if (u.match(/(iPhone|iPod|iPad);?/i)) {
+        // iOS
+        // 移除已选择的元素
+        window.getSelection().removeAllRanges();
+        // 建立一个Range对象
+        var range = document.createRange();
+        // 选中
+        range.selectNode(tempTextarea);
+        // 执行选中元素
+        window.getSelection().addRange(range);
+        // 复制
+        result = document.execCommand('copy');
+        // 移除选中元素
+        window.getSelection().removeAllRanges();
+
+    } else {
+        // 选中    
+        tempTextarea.select();
+        // 复制
+        result = document.execCommand('Copy');
+    }
+    // 移除临时文本域
+    document.body.removeChild(tempTextarea);
+    if (result) {
+        alert('复制ok,去浏览器粘贴打开吧！', {
+            removeTime: 1000
+        })
+    } else {
+        alert('复制失败', {
+            removeTime: 1000
+        })
+    }
+
+    return result;
+}
+</script>
+<div style="position: relative;" id="magnet_c">
+    <textarea id="copytext" style="width: 100%; display: block;cursor: not-allowed;background-color: #eee;opacity: 1;height: auto;border: 1px solid #ccc;background-image: none;border-radius: 1px;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);font-size: 12px;line-height: 1.42857143;color: #555;" rows="3" onclick="$(this).select();" readonly="readonly">点这里复制</textarea>
+    <span class="magnet_b" style="position: absolute;left: 0;bottom: 0;color: #fff;background: #1b72af;border-radius:2px;padding: 0 10px;font-size: 12px;cursor: pointer;display:none;" onclick="copyText('<?php echo 'https://www.vodx.cc'.$_SERVER["REQUEST_URI"]; ?>');">复制</span>
+</div><br>
+		
+		Database version:{maccms:vod num="1 type="" order="desc" by="time"}<b>{$vo.vod_time|date='y.md.Hsi',###}</b>{/maccms:vod}<br>
+		Copyright © 𝑴𝒈𝒊𝒕.𝑪𝒄『极速全球』<br>{$maccms.site_tj}
+		
+		</form>
+		
+
+		</body>
+		
+		</html>
+
+

@@ -1,0 +1,42 @@
+    <!-- 修改悬浮按钮和弹窗 -->
+    <div class="float-buttons" style="display: flex; flex-direction: row; gap: 10px;">
+        <div class="float-button" onclick="togglePopup()">
+            <img src="{$maccms.path_tpl}cd.svg" class="icon-img" alt="menu">
+        </div>
+        <div class="float-button" onclick="window.location.href='/'">
+            <img src="{$maccms.path_tpl}hm.svg" class="icon-img" alt="home">
+        </div>
+        <div class="float-button" onclick="scrollToTop()">
+            <img src="{$maccms.path_tpl}xs.svg" class="icon-img" alt="top">
+        </div>
+    </div>
+
+    <!-- 添加遮罩层 -->
+    <div class="popup-overlay" id="popupOverlay" onclick="togglePopup()"></div>
+
+    <div class="popup-window" id="popupWindow">
+        <span class="close-btn" onclick="togglePopup()">×</span>
+        <div class="popup-content">
+            <div class="popup-body">
+                
+                <div class="popup-menu">
+                    
+                    {maccms:type ids="22,34,45,50,57,23" order="asc" by="sort" id="vo1" key="key1"}
+                    <div class="menu-item">
+                        <h3>{$vo1.type_name}</h3>
+                        {if condition="$key1 lt 30"}
+                        <div class="menu-links">
+                            {maccms:type parent="'.$vo1['type_id'].'" order="asc" by="sort" id="vo2" key="key2"} 
+                            <a href="{:mac_url_type($vo2)}">📂{$vo2.type_name}</a>
+                            {/maccms:type}
+                        </div>
+                        {/if}
+                    </div>
+                    {/maccms:type}
+                   
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>

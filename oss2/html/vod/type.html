@@ -1,0 +1,87 @@
+{include file="html/mi"}
+{include file="html/sid"}
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{maccms:vod num="1" paging="yes" pageurl="vod/palytype" type="current" order="desc" by="<?php echo $fields[$randomIndex]; ?>"}
+<title>{$vo.vod_name} :: {$obj.type_name} :: {$maccms.site_name} :: {$maccms.site_description}！</title>
+
+    
+	  <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="//www.mgit.cc/cdn/mi/key1.css">
+    <meta name="viewport"content="width=device-width, initial-scale=1.0">
+    <style>form{width:90%;margin:0 auto;text-align:left}</style>
+</head>
+
+<body style="background-color: #000; margin-top: 30px;">
+ <script>
+    window.addEventListener('scroll', function () {
+      if (window.pageYOffset > 90) { // 假设滚动超过 500 像素就跳转
+        window.location.href = '/s/{$obj.type_id}/page/<?php echo $randomNumber ?>';
+      }
+    });
+  </script>
+<link rel="prefetch" href="/s/{$obj.type_id}/page/<?php echo $randomNumber ?>">
+
+<form method="post">
+
+
+{include file="html/in"}
+
+	<div style="text-align: center;">
+	
+
+    
+	<iframe width="100%" height="75%" src="{:mac_url_vod_play($vo,['sid'=>1,'nid'=>1])}" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" security="restricted" sandbox="allow-same-origin allow-forms allow-scripts"></iframe>
+   	
+    </div>
+    
+	
+    
+        <font size="2">
+		<a href="{:mac_url_vod_detail($vo)}" target="_blank"><b style="color: #ffffff;">▶{$vo.vod_name}</b></a><br>
+		</font>
+		<font size="1">
+		<font style="color: #ffffff;">@{$vo.type.type_name}&emsp;{if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}&emsp;{$vo.vod_time|date='m/d Y H:s:i',###}</font><br>
+		
+		{$vo.vod_blurb|mac_filter_html}{$vo.vod_actor}……
+		
+
+		<br>
+		<span id="runtime_span"></span>
+		
+		<br>
+        你已播放了：&nbsp;<span class="tingliu3" id="stime"></span><br>
+
+        
+		<br><br><br><center><svg t="1727895046170" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4454" width="48" height="48"><path d="M595.2 844.8v-38.4l-44.8-6.4c0-6.4-6.4-12.8-6.4-19.2l25.6-32-25.6-25.6-32 25.6c-6.4-6.4-12.8-6.4-19.2-6.4l-6.4-44.8h-51.2l-6.4 44.8c-6.4 0-12.8 6.4-19.2 6.4l-32-25.6-25.6 25.6 25.6 32c-6.4 6.4-6.4 12.8-6.4 19.2l-51.2 6.4v38.4l44.8 6.4c0 6.4 6.4 12.8 6.4 19.2l-25.6 32 25.6 25.6 32-25.6c6.4 6.4 12.8 6.4 19.2 6.4l12.8 51.2h38.4l6.4-44.8c6.4 0 12.8-6.4 19.2-6.4l32 25.6 25.6-25.6-25.6-32c6.4-6.4 6.4-12.8 6.4-19.2l57.6-12.8z m-140.8 19.2c-19.2 0-38.4-19.2-38.4-38.4s19.2-38.4 38.4-38.4 38.4 19.2 38.4 38.4-12.8 38.4-38.4 38.4zM1017.6 633.6v-38.4l-38.4-6.4V576l32-25.6-19.2-38.4-38.4 6.4c0-6.4-6.4-6.4-6.4-12.8l25.6-32-32-25.6-32 25.6c-6.4 0-6.4-6.4-12.8-6.4l6.4-38.4-38.4-12.8-25.6 32h-12.8l-6.4-38.4h-38.4l-6.4 38.4h-12.8l-25.6-32-32 6.4 6.4 38.4c-6.4 0-6.4 6.4-12.8 6.4l-32-19.2-32 25.6 25.6 32c0 6.4-6.4 6.4-6.4 12.8L608 512l-12.8 38.4 32 25.6v12.8l-38.4 6.4v38.4l38.4 6.4v12.8l-32 25.6 12.8 38.4 38.4-6.4c0 6.4 6.4 6.4 6.4 12.8l-25.6 32 25.6 25.6 32-25.6c6.4 0 6.4 6.4 12.8 6.4l6.4 44.8 38.4 12.8 25.6-32h12.8l6.4 38.4h38.4l6.4-38.4h12.8l25.6 32 38.4-12.8-12.8-44.8c6.4 0 6.4-6.4 12.8-6.4l32 25.6 25.6-25.6-25.6-32c0-6.4 6.4-6.4 6.4-12.8l38.4 6.4 12.8-38.4-32-25.6V640l51.2-6.4z m-217.6 64c-44.8 0-83.2-38.4-83.2-83.2 0-44.8 38.4-83.2 83.2-83.2s83.2 38.4 83.2 83.2c0 44.8-32 83.2-83.2 83.2zM595.2 441.6l-76.8-38.4H512v-25.6-19.2h6.4L595.2 320c6.4 0 6.4-12.8 6.4-19.2l-25.6-64c0-6.4-6.4-12.8-12.8-6.4l-89.6 19.2h-6.4c-6.4-12.8-19.2-25.6-32-32L460.8 128c0-6.4 0-12.8-6.4-12.8l-64-25.6c-6.4 0-12.8 0-19.2 6.4l-44.8 70.4h-51.2l-38.4-76.8c0-6.4-12.8-6.4-19.2-6.4l-64 25.6c-6.4 6.4-6.4 12.8-6.4 19.2l19.2 76.8c-12.8 12.8-32 25.6-38.4 44.8L51.2 230.4c-6.4 0-12.8 0-12.8 6.4l-25.6 64c0 6.4 0 12.8 6.4 19.2l70.4 38.4v51.2l-76.8 32c-6.4 6.4-6.4 12.8-6.4 19.2l25.6 64c0 6.4 6.4 12.8 12.8 6.4L128 518.4l38.4 38.4-25.6 76.8c0 6.4 0 12.8 6.4 12.8l64 25.6c6.4 0 12.8 0 19.2-6.4l44.8-70.4H320l44.8 76.8c0 6.4 12.8 6.4 19.2 6.4l64-25.6c6.4 0 12.8-6.4 6.4-12.8l-19.2-89.6v-6.4c12.8-6.4 25.6-19.2 32-32h6.4l83.2 19.2c6.4 0 12.8 0 12.8-6.4l25.6-64c6.4-6.4 0-12.8 0-19.2zM294.4 550.4C204.8 550.4 128 473.6 128 377.6c0-96 76.8-166.4 166.4-166.4 96 0 166.4 76.8 166.4 166.4 6.4 96-70.4 172.8-166.4 172.8z m0-256c-44.8 0-83.2 38.4-83.2 89.6 0 44.8 38.4 83.2 83.2 83.2C345.6 467.2 384 428.8 384 384c0-51.2-38.4-89.6-89.6-89.6z m0 134.4c-25.6 0-44.8-19.2-44.8-44.8 0-25.6 19.2-44.8 44.8-44.8 25.6-6.4 51.2 19.2 51.2 44.8 0 25.6-25.6 44.8-51.2 44.8z" fill="#ffffff" p-id="4455"></path></svg><br>
+		<b style="color: #ffffff;">
+		视频加载中...<br><br>
+		
+		</b>
+		<font size="1" style="color: #ffffff;">Copyright © 𝑴𝒈𝒊𝒕.𝑪𝒄『极速全球』</font>
+		</center>
+		<br>
+		
+</font>
+<script language="JavaScript">var ss=0,mm=0,hh=0;function TimeGo(){ss++;if(ss>=60){mm+=1;ss=0}if(mm>=60){hh+=1;mm=0}ss_str=(ss<10?"0"+ss:ss);mm_str=(mm<10?"0"+mm:mm);tMsg=""+hh+":"+mm_str+":"+ss_str+" ";document.getElementById("stime").innerHTML=tMsg;setTimeout("TimeGo()",1000)}TimeGo();</script>
+</form>
+
+
+<script type="text/javascript">function show_runtime(){window.setTimeout("show_runtime()",1000);X=new 
+Date("10/1/2024 15:22:00");
+Y=new Date();T=(Y.getTime()-X.getTime());M=24*60*60*1000;
+a=T/M;A=Math.floor(a);b=(a-A)*24;B=Math.floor(b);c=(b-B)*60;C=Math.floor((b-B)*60);D=Math.floor((c-C)*60);
+runtime_span.innerHTML="本引擎以运行: "+A+"天 "+B+":"+C+":"+D+" "}show_runtime();</script>
+
+
+{/maccms:vod}
+{$maccms.site_tj}  
+{include file="html/dh"}
+</body>
+
+
+</html>

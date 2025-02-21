@@ -1,0 +1,57 @@
+{include file="html/mi"}
+<html>
+<title>{$maccms.site_name} :: {$maccms.site_description}！</title>
+    
+    <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="//www.mgit.cc/cdn/mi/key1.css">
+    <meta name="viewport"content="width=device-width, initial-scale=1.0">
+    <style>form{width:90%;margin:0 auto;text-align:left}</style>
+    </head>
+    <body >
+     
+	
+    
+	
+    <form method="post"><br><br><br><br><br><br>
+	
+	{include file="html/dh"}<br>
+	
+	
+    <br><br>
+    <font size="1">
+		
+		<br>
+		
+		刷新一下，或者点击左下角[换一下]按钮，随机换个视频！
+		<br>
+		：每天在更新，视频随机看，看你运气了！<br>
+		<span id="runtime_span"></span>
+		
+		<br>
+        你在这里等了：&nbsp;<span class="tingliu3" id="stime"></span>
+<script language="JavaScript">var ss=0,mm=0,hh=0;function TimeGo(){ss++;if(ss>=60){mm+=1;ss=0}if(mm>=60){hh+=1;mm=0}ss_str=(ss<10?"0"+ss:ss);mm_str=(mm<10?"0"+mm:mm);tMsg=""+hh+":"+mm_str+":"+ss_str+" ";document.getElementById("stime").innerHTML=tMsg;setTimeout("TimeGo()",1000)}TimeGo();</script><br>
+		Copyright © 𝑴𝒈𝒊𝒕.𝑪𝒄『极速全球』<br>
+		</font>
+    
+    
+
+    
+		
+		<!--输入框下提示-->
+		
+
+		
+		
+		<!--输入框下提示-->
+		</form>
+
+
+<script type="text/javascript">function show_runtime(){window.setTimeout("show_runtime()",1000);X=new 
+Date("10/1/2024 15:22:00");
+Y=new Date();T=(Y.getTime()-X.getTime());M=24*60*60*1000;
+a=T/M;A=Math.floor(a);b=(a-A)*24;B=Math.floor(b);c=(b-B)*60;C=Math.floor((b-B)*60);D=Math.floor((c-C)*60);
+runtime_span.innerHTML="本引擎以运行: "+A+"天 "+B+":"+C+":"+D+" "}show_runtime();</script>
+
+		</body>
+		</html>

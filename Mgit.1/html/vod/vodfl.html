@@ -1,0 +1,38 @@
+<table class="small nav_tag_list">
+<tbody>
+<!--
+<tr>
+<td class="text-muted text-nowrap" align="right" valign="top">类别：</td>
+<td>
+{maccms:type ids="parent" order="asc" by="sort"}
+<a href="{:mac_url_type($vo)}">{$vo.type_name}</a>
+{/maccms:type}
+</td>
+</tr>
+-->
+<tr>
+<td class="text-muted text-nowrap" align="right" valign="top">类别：</td>
+<td>
+{maccms:type ids="current" order="asc" by="sort" id="vo1" key="key1"}
+<a href="{:mac_url_type($vo1)}">{$vo1.type_name}</a>
+{/maccms:type}
+</td>
+</tr>
+
+
+
+
+
+
+
+<!--
+<tr>
+<td class="text-muted text-nowrap" align="right" valign="top">年代：</td>
+<td>
+
+</td>
+</tr>
+-->			
+</tbody>
+</table>
+<br>

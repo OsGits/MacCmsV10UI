@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$obj.vod_name} :: {$obj.vod_year}年{$obj.vod_area}{$obj.vod_class}片在线播放 - {$obj.vod_name}详情介绍 - {$obj.vod_name}网盘下载 - {$obj.vod_name}迅雷下载 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.vod_name},{$obj.vod_name}在线播放,{$obj.vod_name}网盘下载,{$obj.vod_year}{$obj.type.type_name},{$obj.vod_area}{$obj.type.type_name},{$obj.vod_class}{$obj.type.type_name},{$obj.vod_lang}{$obj.type.type_name},{$obj.vod_director},{$obj.vod_actor}" />
+    <meta name="description" content="{$obj.vod_name|mac_filter_html}剧情:{$obj.vod_blurb|mac_filter_html}" />
+    <meta property="og:type" content="{$obj.type.type_name}"/>
+    <meta property="og:title" content="{$obj.vod_name}{$obj.vod_year}年{$obj.vod_area}{$obj.vod_class}片在线播放 - {$obj.vod_name}详情介绍 - {$obj.vod_name}网盘下载 - {$obj.vod_name}迅雷下载 - {$maccms.site_name}"/>
+    <meta property="og:site_name " content="{$maccms.site_name}"/>
+    <meta property="og:description" content="{$obj.vod_name|mac_filter_html}剧情:{$obj.vod_blurb|mac_filter_html}..."/>
+    <meta property="og:url" content="https://{$maccms.site_url}/x/{$obj.vod_id}"/>
+    <meta property="og:image" content="{:mac_url_img($obj.vod_pic)}"/>
+{maccms:vod num="2" type="" order="desc" by="time"}    <link rel="prev" title="{$vo.vod_name} {if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}" href="https://{$maccms.site_url}{:mac_url_vod_detail($vo)}"/>
+{/maccms:vod}
+    <link rel="canonical" href="https://{$maccms.site_url}/x/{$obj.vod_id}"/>
+{include file="html/in"} 
+  
+  <main class="main-content">
+    <!--== Start Page Header Area Wrapper ==-->
+    <div class="page-header-area sec-overlay sec-overlay-black" data-bg-img="{:mac_url_img($obj.vod_pic)}">
+      <div class="container pt--0 pb--0">
+        <div class="row">
+          <div class="col-12">
+            <div class="page-header-content">
+              <h2 class="title">详情介绍</h2>
+              <nav class="breadcrumb-area">
+                <ul class="breadcrumb justify-content-center">
+                  <li><a href="/">首页</a></li>
+                  <li class="breadcrumb-sep">//</li>
+                  <li>{$obj.vod_name}</li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--== End Page Header Area Wrapper ==-->
+
+    <!--== Start Team Details Area Wrapper ==-->
+    <section class="team-details-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="team-details-wrap">
+              <div class="team-details-info">
+                <div class="thumb">
+                  <img src="{:mac_url_img($obj.vod_pic)}" width="130" height="130" alt="Image-HasTech" onerror="this.style.display='none'">
+                </div>
+                <div class="content">
+                  <h4 class="title">{$obj.vod_name}</h4>
+                  <h5 class="sub-title">{if condition="$obj.vod_serial gt 0"}第{$obj.vod_serial}集/共{$obj.vod_total}集{else/}{$obj.vod_remarks}{/if}</h5>
+                  <ul class="info-list">
+                    <li><i class="icofont-location-pin"></i> {$obj.vod_area|mac_url_create='area'}</li>
+                  </ul>
+                </div>
+              </div>              
+            </div>
+          </div>
+        </div>
+        <div class="row">
+		
+          <div class="col-lg-7 col-xl-8">
+            <div class="team-details-item">              
+              <div class="candidate-details-wrap">  
+			  <h4 class="content-title">内容 & </h4>              
+                <div class="candidate-details-content">
+                  <div class="content-item">
+                    <h4 class="title">关于 <span>//</span> <span>{$obj.vod_name}</span></h4>                    
+                    <p class="desc">&nbsp;&nbsp;&nbsp;&nbsp;{$obj.vod_year|mac_url_create='year'}&nbsp;{$obj.vod_area|mac_url_create='area'}&nbsp;{$obj.vod_class|mac_url_create='class'}&nbsp;{$obj.vod_lang|mac_url_create='lang'}&nbsp;{$obj.vod_time|date='Y.m.d H:s:i',###}&nbsp;{$obj.vod_director|mac_url_create='director'}&nbsp;{$obj.vod_actor|mac_url_create='actor'}&nbsp;{$obj.vod_content|mac_url_content_img}
+					</p>
+                  </div>                  
+                </div>
+              </div>
+              <div class="candidate-details-wrap">
+                <h4 class="content-title">图片 & Img</h4>
+                <div class="candidate-details-content">
+				  <div class="content-item">
+					<p class="desc"><img src="{:mac_url_img($obj.vod_pic)}" alt="{$obj.vod_name}" onerror="this.style.display='none'"/></p>					
+                  </div>
+                  {maccms:foreach name="obj.vod_pic_screenshot_list" id="vo"}
+                  <div class="content-item">
+					<p class="desc"><img src="{$vo.url}" alt="{$vo.name}" onerror="this.style.display='none'"/></p>					
+                  </div>
+				  {/maccms:foreach}                  
+                </div>
+              </div>

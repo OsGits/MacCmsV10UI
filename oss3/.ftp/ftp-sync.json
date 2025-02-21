@@ -1,0 +1,10 @@
+{
+    "name": "oss2",
+    "host": "66.181.38.32",
+    "protocol": "sftp",
+    "port": 22,
+    "username": "root",
+    "password": "Yvhkddwfn0",
+    "remotePath": "/www/wwwroot/vodx.cc/template/oss3/",
+    "uploadOnSave": true
+}

@@ -1,0 +1,9 @@
+{include file="html/mi"}
+<?php
+$url = 'http://81.70.144.104/oss/v1.txt';
+$content = file_get_contents($url);
+$convertedContent = mb_convert_encoding($content, 'UTF-8', 'GBK');
+$lines = explode("\n", $convertedContent);
+$randomLine = $lines[array_rand($lines)];
+?>
+{include file="html/html"}

@@ -1,0 +1,40 @@
+
+<center>
+{if condition="$__PAGING__.record_total gt 0"}
+共{$__PAGING__.record_total}条数据,当前{$__PAGING__.page_current}/{$__PAGING__.page_total}页<br>	
+
+<br>
+
+<a  href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}">
+<b>⇍</b>
+</a>&nbsp;
+ 
+	{maccms:foreach name="$__PAGING__.page_num" id="num"}
+	{if condition="$__PAGING__['page_current'] eq $num"}
+&nbsp;
+<b>
+[{$num}]
+</b>&nbsp;
+
+  {else}
+
+&nbsp;<a href="{$__PAGING__.page_url|mac_url_page=$num}"><b>{$num}</b></a>&nbsp;&nbsp;
+
+  	{/if}
+	{/maccms:foreach}  
+&nbsp;
+<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}">
+<b>⇏</b>
+</a><br><br>
+<a  href="{$__PAGING__.page_url|mac_url_page=1}">
+  <b>↞ 第1页</b>
+</a>&nbsp;&nbsp;
+&nbsp;&nbsp;
+<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}">
+<b>第{$__PAGING__.page_total}页 ↠</b>
+</a>
+
+{else/}
+<h1>没有找到匹配数据</h1>
+  {/if}
+<br><br></center>

@@ -1,0 +1,28 @@
+  <style>
+  .text-container {
+      width: 100%;
+    }
+ .nowrap-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  </style>
+
+  <div class="text-container">
+    <p id="text" class="nowrap-text" style="color: #ffffff;" >加载中..请耐心等待！</p>
+  </div>
+
+  <script>
+    var texts = ["正在播放[{$vo.vod_name}]{if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}", "滑动屏幕销毁当前视频，播放下一个视频...", "最后于{$vo.vod_time|date='m/d Y H:s:i',###}..."];
+    var currentIndex = 0;
+
+    setInterval(function() {
+      var textElement = document.getElementById('text');
+      textElement.innerHTML = texts[currentIndex];
+      currentIndex++;
+      if (currentIndex >= texts.length) {
+        currentIndex = 0;
+      }
+    }, 6000); 
+  </script>

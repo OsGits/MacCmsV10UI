@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8"><title>{$obj.vod_name} :: 详情介绍！</title>
+	<link href="{$maccms.path}static/css/home.css" rel="stylesheet" type="text/css" />
+	<script src="{$maccms.path}static/js/jquery.js"></script>
+	<script src="{$maccms.path}static/js/jquery.lazyload.js"></script>
+	<script src="{$maccms.path}static/js/jquery.autocomplete.js"></script>
+	<script>var maccms={"path":"__ROOT__","mid":"{$maccms['mid']}","aid":"{$maccms['aid']}","url":"{$maccms['site_url']}","wapurl":"{$maccms['site_wapurl']}","mob_status":"{$maccms['mob_status']}"};</script>
+	<script src="{$maccms.path}static/js/home.js"></script>
+	
+
+
+  <style>
+    body {
+      background: url('{:mac_url_img($obj.vod_pic)}');
+      background-size: cover;
+      backdrop-filter: blur(35px);  /* 实现模糊效果 */
+      -webkit-backdrop-filter: blur(10px);  /* 针对某些浏览器的兼容性 */
+
+      /* 去除边缘白色 */
+      margin: 0;
+      padding: 0;
+      height: 100vh;  /* 确保 body 充满整个视口高度，方便背景展示 */
+      overflow-y: auto;  /* 允许纵向滚动 */
+    }
+  </style>
+  
+    <style>     
+
+       .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+			
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        p {
+            color: #ffffff;
+        }
+		a {
+            color: #ffffff;
+        }
+		strong {
+            color: #ffffff;
+        }
+		hr {
+      border: none;
+      height: 1px;
+      background-color: #dddddd;
+    }
+	
+	.custom-button {
+      background-color: #09a56a; /* 背景颜色 */
+      border: none; /* 去除边框 */
+      color: #ffffff; /* 文字颜色 */
+      padding: 5px 10px; /* 内边距 */
+	  margin: 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      border-radius: 5px; /* 圆角 */
+      cursor: pointer; /* 鼠标指针变为手型 */
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* 阴影效果 */
+    }
+
+   .custom-button:hover {
+      background-color: #06a5a3; /* 鼠标悬停时的背景颜色 */
+    }
+	
+	  .menu-container {
+      column-count: 2;
+      column-gap: 10px;
+    }
+
+  .menu-item {
+      display: inline-block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+  .menu-item h3 {
+      margin: 0;
+    }
+
+  .menu-item p {
+      margin: 10px 0 0 0;
+    }
+	
+	}
+	
+    </style>
+		<style>
+			  .left-part {
+			      float: left;
+			    }
+			
+			  .right-part {
+			      float: right;
+			    }
+			img {
+            border-radius: 10px; 
+            box-shadow: 6px 6px 14px 0px rgb(0 0 0);
+            max-height: 350px;
+            max-width: 100%;
+             }
+             .no-shadow {
+      box-shadow: none;
+             }
+             body * {
+      text-shadow: 3px 3px 5px rgb(0 0 0)
+          
+    
+    }
+			  </style>	
+  <style>
+  .image-container {
+      position: relative;
+    }
+
+  .icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      transform: translate(-50%, -50%);
+    }
+  </style>	
+	
+  <style>
+   .right-top-image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      
+    }
+
+  </style>	
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;  /* 使 body 高度占满整个视口 */
+    }
+  </style>
+  <style>
+    p {
+      word-break: break-all;  /* 允许在单词内换行 */
+    }
+  </style>
+</head>
+
+<body>  
+    <!--img class="no-shadow right-top-image " src="{$maccms.path_tpl}img/hot2.svg" alt="Your Image"-->
+    <div class="container" >
+        <div class="paly">
+		<center>
+		<div class="image-container">
+		<img src="{:mac_url_img($obj.vod_pic)}" >
+		<a href="{:mac_url_vod_play($obj,['sid'=>1,'nid'=>1])}" >
+		<img class="icon" src="{$maccms.path_tpl}img/bf2s.svg" alt="Icon">
+		</a>
+		</div>
+		</center>
+		
+		</div>
+		<p><font size="4" color="#f14d00";><b>▷{$obj.vod_name}</b></font></strong><font size="1" color="#ffffff";> &nbsp;&nbsp;::&nbsp;&nbsp; ({$obj.vod_year|mac_default='没人给我说哪'}年)</font></p>
+		
+		<!--p><strong>✧主演：</strong><font size="1" color="#ffffff" ;>{$obj.vod_actor|mac_default='自己去搜一下吧'}</font></p-->
+		
+		<div class="menu-container">
+                
+        <div class="menu-item">
+		<strong>类型：</strong><font size="1" color="#ffffff";>{$obj.type_1.type_name}&nbsp;{$obj.type.type_name}&nbsp;{$obj.vod_class|mac_default='视频类'}</font>
+		</div>
+
+		
+		<div class="menu-item">
+		<strong>地区：</strong><font size="1" color="#ffffff";>{$obj.vod_area|mac_default='地球上拍的'}</font>
+		</div>
+		
+		<div class="menu-item">
+		<strong>导演：</strong><font size="1" color="#ffffff";>{$obj.vod_director|mac_default='暂时不知道'}</font>
+        </div>
+		
+        <div class="menu-item">
+		<strong>博主：</strong><font size="1" color="#ffffff";>岸影圈</font>
+		</div>
+		
+		</div>
+        <p><strong>✧主演：</strong><font size="1" color="#ffffff";>{$obj.vod_actor|mac_default='自己去搜一下吧'}</font></p>
+		
+		
+		
+		
+		
+		
+    </div>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    #qrcode {
+      width: 65px;
+      height: 65px;
+    }
+    #contentTag {
+      display: none;  /* 隐藏该标签的内容 */
+    }
+  </style>
+<p id="contentTag">{$maccms.site_wapurl}{:mac_url_vod_play($obj,['sid'=>1,'nid'=>1])}#M</p>
+<div class="float-button" >
+<div id="qrcode"></div>
+<font size="1" color="#ffffff";>
+在浏览器识别
+</font>
+</div>
+  <script>
+    // 页面加载时自动执行
+    window.onload = function() {
+      var content = document.getElementById('contentTag').innerHTML;
+      var qrcode = new QRCode(document.getElementById('qrcode'), {
+        text: content,
+        width: 65,
+        height: 65
+      });
+    };
+  </script>
+<style>
+.float-button {
+  position: fixed; /* 使元素相对于视口固定 */
+  right: 10px;    /* 距离右边10像素 */
+  bottom: 10px;   /* 距离底部10像素 */
+  z-index: 1000;  /* 确保元素在顶层显示 */
+}
+ 
+.float-button a {
+  text-decoration: none; /* 移除下划线 */
+  color: white;          /* 文字颜色 */
+  padding: 5px;          /* 内边距 */
+  background-color: #08847a; /* 背景颜色 */
+  border-radius: 5px;     /* 圆角边框 */
+}
+</style>
+
+
+
+<script>
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+</script>
+<style>
+@font-face {
+font-family: 'CustomFont'; /* 自定义字体名称 */
+src: url('/template/blockdole.woff') format('woff'); /* 自定义字体文件路径和格式 */
+}
+body {
+font-family: 'CustomFont', sans-serif; /* 使用自定义字体，如果加载失败则使用备用字体 */
+}
+</style>
+</body>
+
+</html>

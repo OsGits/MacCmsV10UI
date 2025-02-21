@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:mobile="http://www.baidu.com/schemas/sitemap-mobile/1/">
+<!-- generated-on=2024-07-20 12:00:00 -->
+<title>{$maccms.site_name}</title>
+<description>{$maccms.site_name}</description>
+<link>{$maccms.site_url}</link>
+<language>zh-cn</language>
+<docs>{$maccms.site_name}</docs>
+<generator>Rss Powered By {$maccms.site_url}</generator>
+{maccms:foreach name=":explode(',',$maccms.search_hot)" id="vo2" key="key2"}
+<url>
+<loc>https://{$maccms.site_url}{:mac_url('vod/search',['wd'=>$vo2])}</loc>
+<lastmod>2024-07-20 12:00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1.0</priority>
+</url>
+{/maccms:foreach}
+{maccms:type ids="parent" order="asc" by="sort"}
+<url>
+<loc>https://{$maccms.site_url}{:mac_url_type($vo)}</loc>
+<lastmod>2024-02-01 12:30:55</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+{if condition="$key1 lt 3"}
+{maccms:type parent="'.$vo1['type_id'].'" order="asc" by="sort" id="vo2" key="key2"}
+<url>
+<loc>https://{$maccms.site_url}{:mac_url_type($vo2)}</loc>
+<lastmod>2024-02-01 12:30:55</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+{/maccms:type}
+{/if}
+{/maccms:type}
+{maccms:vod num="1000" paging="yes" order="desc" by="time"}
+<url>
+<loc>https://{$maccms.site_url}{:mac_url_vod_detail($vo)}</loc>
+<lastmod>{$vo.vod_time|date='Y-m-d H:i:s',###}</lastmod>
+<changefreq>weekly</changefreq>
+<priority>1.0</priority>
+</url>
+{/maccms:vod}
+</urlset>

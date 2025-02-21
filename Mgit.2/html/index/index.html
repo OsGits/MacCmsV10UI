@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$maccms.site_name} - {$maccms.site_description}！</title>
+    <meta name="keywords" content="{$maccms.site_keywords}" />
+    <meta name="description" content="{$maccms.site_description}" />
+    {include file="html/in"}  
+  <main class="main-content">
+    <!--== Start Hero Area Wrapper ==-->
+    <section class="home-slider-area">
+      <div class="home-slider-container default-slider-container">
+        <div class="home-slider-wrapper slider-default">
+          <div class="slider-content-area" data-bg-img="{$maccms.path_tpl}assets/img/slider/slider-bg.webp">
+            <div class="container pt--0 pb--0">
+              <div class="slider-container">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-12 col-lg-8">
+                    <div class="slider-content">
+                      <h2 class="title">
+					  视频库<span class="counter" data-counterup-delay="80">{:mac_data_count(0,'all','vod')}</span> 条视频数据 <br>
+					  文库<span class="counter" data-counterup-delay="80">{:mac_data_count(0,'all','art')}</span> 篇文章数据 </h2>
+                      <p class="desc">今日新增
+					  <span class="counter" data-counterup-delay="80">{:mac_data_count(0,'today','vod')}</span>条视频，
+					  <span class="counter" data-counterup-delay="80">{:mac_data_count(0,'today','art')}</span>篇文章！</p>
+                    </div>
+                  </div>
+				  <!--
+                  <div class="col-12">
+                    <div class="job-search-wrap">
+                      <div class="job-search-form">
+					  
+                        <form action="#">
+                          <div class="row row-gutter-10">
+                            <div class="col-lg-auto col-sm-6 col-12 flex-grow-1">
+                              <div class="form-group">
+                                <input type="text" class="form-control" placeholder="查找你要找的:片名/明星/导演">
+                              </div>
+                            </div>                            
+                            <div class="col-lg-auto col-sm-6 col-12 flex-grow-1">
+                              <div class="form-group">
+                                <button type="button" class="btn-form-search"><i class="icofont-search-1"></i></button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>						
+                      </div>
+                    </div>
+                  </div>
+				  -->
+				  
+				  {include file="html/so"}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-slider-shape">
+        <img class="shape1" data-aos="fade-down" data-aos-duration="1500" src="{$maccms.path_tpl}static/picture/vector1.webp" width="270" height="234" alt="Image-HasTech">
+        <img class="shape2" data-aos="fade-left" data-aos-duration="2000" src="{$maccms.path_tpl}static/picture/vector2.webp" width="201" height="346" alt="Image-HasTech">
+        <img class="shape3" data-aos="fade-right" data-aos-duration="2000" src="{$maccms.path_tpl}static/picture/vector3.webp" width="276" height="432" alt="Image-HasTech">
+        <img class="shape4" data-aos="flip-left" data-aos-duration="1500" src="{$maccms.path_tpl}static/picture/vector4.webp" width="127" height="121" alt="Image-HasTech">
+      </div>
+    </section>
+    <!--== End Hero Area Wrapper ==-->    
+
+	
+	<!--== Start Job Category Area Wrapper ==-->
+    <section class="job-category-area">
+      <div class="container" data-aos="fade-down">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <h3 class="title">庞大的资源库</h3>
+              <div class="desc">
+                <p>{$maccms.site_name}每时每刻都在为你更新！</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-gutter-20">
+		
+          {include file="index/sl"}
+          {include file="index/t"}
+         
+        </div>
+      </div>
+    </section>
+    <!--== End Job Category Area Wrapper ==-->
+
+    <!--== Start Work Process Area Wrapper ==-->
+    <section class="work-process-area">
+      <div class="container" data-aos="fade-down">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <h3 class="title">免费手机快速找片?</h3>
+              <div class="desc">
+                <p>手机实时搜索要找的影视资源！</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="working-process-content-wrap">
+              <div class="working-col">
+                <!--== Start Work Process ==-->
+                <div class="working-process-item">
+                  <div class="icon-box">
+                    <div class="inner">
+                      <img class="icon-img" src="{$maccms.path_tpl}static/picture/w11.webp" alt="Image-HasTech">
+                      <img class="icon-hover" src="{$maccms.path_tpl}static/picture/w1-hover.webp" alt="Image-HasTech">
+                    </div>
+                  </div>
+                  <div class="content">
+                    <h4 class="title">微信搜索公众号</h4>
+                    <p class="desc">微信搜索公众号【岸影圈】</p>
+                  </div>
+                  <div class="shape-arrow-icon">
+                    <img class="shape-icon" src="{$maccms.path_tpl}static/picture/right-arrow.webp" alt="Image-HasTech">
+                    <img class="shape-icon-hover" src="{$maccms.path_tpl}static/picture/right-arrow2.webp" alt="Image-HasTech">
+                  </div>
+                </div>
+                <!--== End Work Process ==-->
+              </div>
+              <div class="working-col">
+                <!--== Start Work Process ==-->
+                <div class="working-process-item">
+                  <div class="icon-box">
+                    <div class="inner">
+                      <img class="icon-img" src="{$maccms.path_tpl}static/picture/w21.webp" alt="Image-HasTech">
+                      <img class="icon-hover" src="{$maccms.path_tpl}static/picture/w2-hover.webp" alt="Image-HasTech">
+                    </div>
+                  </div>
+                  <div class="content">
+                    <h4 class="title">关注岸影圈</h4>
+                    <p class="desc">搜索公众号后关注(方便使用)</p>
+                  </div>
+                  <div class="shape-arrow-icon">
+                    <img class="shape-icon" src="{$maccms.path_tpl}static/picture/right-arrow.webp" alt="Image-HasTech">
+                    <img class="shape-icon-hover" src="{$maccms.path_tpl}static/picture/right-arrow2.webp" alt="Image-HasTech">
+                  </div>
+                </div>
+                <!--== End Work Process ==-->
+              </div>
+              <div class="working-col">
+                <!--== Start Work Process ==-->
+                <div class="working-process-item">
+                  <div class="icon-box">
+                    <div class="inner">
+                      <img class="icon-img" src="{$maccms.path_tpl}static/picture/w31.webp" alt="Image-HasTech">
+                      <img class="icon-hover" src="{$maccms.path_tpl}static/picture/w3-hover.webp" alt="Image-HasTech">
+                    </div>
+                  </div>
+                  <div class="content">
+                    <h4 class="title">发送需搜索关键词</h4>
+                    <p class="desc">回复要找的片名或明星！</p>
+                  </div>
+                  <div class="shape-arrow-icon">
+                    <img class="shape-icon" src="{$maccms.path_tpl}static/picture/right-arrow.webp" alt="Image-HasTech">
+                    <img class="shape-icon-hover" src="{$maccms.path_tpl}static/picture/right-arrow2.webp" alt="Image-HasTech">
+                  </div>
+                </div>
+                <!--== End Work Process ==-->
+              </div>
+              <div class="working-col">
+                <!--== Start Work Process ==-->
+                <div class="working-process-item">
+                  <div class="icon-box">
+                    <div class="inner">
+                      <img class="icon-img" src="{$maccms.path_tpl}static/picture/w41.webp" alt="Image-HasTech">
+                      <img class="icon-hover" src="{$maccms.path_tpl}static/picture/w4-hover.webp" alt="Image-HasTech">
+                    </div>
+                  </div>
+                  <div class="content">
+                    <h4 class="title">系统匹配</h4>
+                    <p class="desc">根据提示打开即可！</p>
+                  </div>
+                  <div class="shape-arrow-icon d-none">
+                    <img class="shape-icon" src="{$maccms.path_tpl}static/picture/right-arrow.webp" alt="Image-HasTech">
+                    <img class="shape-icon-hover" src="{$maccms.path_tpl}static/picture/right-arrow2.webp" alt="Image-HasTech">
+                  </div>
+                </div>
+                <!--== End Work Process ==-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Work Process Area Wrapper ==-->
+
+    <!--== Start Divider Area Wrapper ==--
+    <section class="sec-overlay sec-overlay-theme bg-img" data-bg-img="{$maccms.path_tpl}assets/img/photos/bg1.webp">
+      <div class="container pt--0 pb--0">
+        <div class="row justify-content-center divider-style1">
+          <div class="col-lg-10 col-xl-7">
+            <div class="divider-content text-center">
+              <h4 class="sub-title" data-aos="fade-down">Trial Version Available</h4>
+              <h2 class="title" data-aos="fade-down">Download Our Mobile App. <br>You Can Ready Resume & Apply Job.</h2>
+              <div class="divider-btn-group">
+                <a class="btn-divider" data-aos="fade-down" href="page-not-found.html">
+                  <img src="{$maccms.path_tpl}static/picture/google-play.webp" width="201" height="63" class="icon" alt="Image-HasTech">
+                </a>
+                <a class="btn-divider btn-divider-app-store" data-aos="fade-down" href="page-not-found.html">
+                  <img src="{$maccms.path_tpl}static/picture/mac-os.webp" width="201" height="63" class="icon" alt="Image-HasTech">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-layer-style1"></div>
+      <div class="bg-layer-style2"></div>
+    </section>
+    <!--== End Divider Area Wrapper ==-->
+
+  </main>
+
+  <!--== Start Footer Area Wrapper ==-->
+  <footer class="footer-area">
+	{include file="html/fn"}
+
+</body>
+
+</html>

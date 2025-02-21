@@ -1,0 +1,22 @@
+        {include file="vod/da1"}
+
+				
+		<nav class="my-3">
+		
+		<p>资源线路：</p>
+		<ul class="pagination justify-content flex-wrap">		
+		
+		<li class="page-item"><br>
+		{maccms:foreach name="obj.vod_play_list" id="vo" key="key"}
+		<a href="{$maccms.site_wapurl}/d/1I{$obj.vod_id}I{$vo.sid}" class="page-link" target="_blank">☍{$vo.player_info.show}：{$vo.player_info.tip}</a><br>
+		{/maccms:foreach}
+		</li>
+				
+		</ul>
+		
+		</nav>
+		
+							
+        {include file="vod/da2"}					
+					
+

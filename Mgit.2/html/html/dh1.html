@@ -1,0 +1,33 @@
+            <div class="header-align-center">
+              <div class="header-navigation-area position-relative">
+                <ul class="main-menu nav">
+                  <li><a href="/"><span>首页</span></a></li>
+
+                  
+                  <li class="has-submenu"><a href="javascript:;"><span>视频</span></a>					
+                    <ul class="submenu-nav">                      
+					  {maccms:type ids="1,39,40,41" order="asc" by="sort" id="vo1" key="key1"}
+                      <li><a href="{:mac_url_type($vo1,[],'type')}"><span>{$vo1.type_name}</span></a></li>
+					  {/maccms:type}					  
+                    </ul>					
+                  </li>
+
+                  {maccms:type ids="42,45" order="asc" by="sort" id="vo1" key="key1"}
+                  <li class="has-submenu"><a href="javascript:;"><span>{$vo1.type_name}</span></a>					
+                    <ul class="submenu-nav">                      
+                {if condition="$key1 lt 10"}
+			    {maccms:type parent="'.$vo1['type_id'].'" order="asc" by="sort" id="vo2" key="key2"}
+                      <li><a href="{:mac_url_type($vo2,[],'type')}"><span>{$vo2.type_name}</span></a></li>
+					  {/maccms:type}
+					  {/if}					  
+                    </ul>					
+                  </li>
+                  {/maccms:type}
+
+                <li><a href="https://www.mgit.cc" target="_blank"><span>极速全球</span></a></li>
+                
+                </ul>
+              </div>
+            </div>
+            
+            

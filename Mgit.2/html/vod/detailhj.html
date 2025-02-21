@@ -1,0 +1,20 @@
+{include file="mi/mi"}
+{include file="vod/d1"}
+			<div class="candidate-details-wrap">  
+			  <h4 class="content-title">线路 & Play</h4>              
+                <div class="candidate-details-content">
+                  <div class="content-item">
+				  {maccms:foreach name="obj.vod_play_list" id="vo" key="key"}
+                    <h4 class="title">
+					{$vo.player_info.show}地址
+					<span>//</span> <span>：</span></h4>                    
+                    {maccms:foreach name="vo.urls" id="vo2" key="key2"}
+					<p class="desc">
+					♨&nbsp;<a href="{$maccms.site_wapurl}/v/{$obj.vod_id}I{$vo.sid}I{$vo2.nid}"  target="_blank">{$vo2.name}${$maccms.site_wapurl}/v/{$obj.vod_id}I{$vo.sid}I{$vo2.nid}</a><br>
+					</p>
+					{/maccms:foreach}
+					{/maccms:foreach}
+                  </div>                  
+                </div>
+              </div>
+{include file="vod/d2"}

@@ -1,0 +1,10 @@
+{maccms:vod num="14" type="" paging="yes" pageurl="index/index" level="1" order="desc" by="time"}
+<div class="col-sm-6 col-lg-3">  
+  <div class="job-category-item">
+    <div class="content">
+      <h3 class="title"><a href="/s/wd/{$vo.vod_name}.html">{$vo.vod_name}&nbsp;::&nbsp;<span>{if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}</span></a></h3>
+    </div>
+    <a class="overlay-link" href="/s/wd/{$vo.vod_name}.html"></a>
+  </div> 
+</div>
+{/maccms:vod}

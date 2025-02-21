@@ -1,0 +1,60 @@
+
+    
+
+    <!--== Start Footer Bottom ==-->
+    <div class="footer-bottom">
+      <div class="container pt--0 pb--0">
+        <div class="row">
+          <div class="col-12">
+            <div class="footer-bottom-content">
+              <p class="copyright">
+                  Copyright&nbsp;&copy;&nbsp;{maccms:vod num="1 type="" order="desc" by="time"}<b>{$vo.vod_time|date='y.md.Hsi',###}</b>{/maccms:vod}.<br>
+              <a href="/rss.xml">Rss订阅</a>&nbsp;&nbsp;<a href="/">WeChat订阅</a>
+              {$maccms.site_tj}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--== End Footer Bottom ==-->
+  </footer>
+  <!--== End Footer Area Wrapper ==-->
+
+  <!--== Scroll Top Button ==-->
+  <div id="scroll-to-top" class="scroll-to-top"><span class="icofont-rounded-up"></span></div>
+
+  <!--== Start Aside Menu ==-->
+  <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h1 class="d-none" id="offcanvasExampleLabel">Aside Menu</h1>
+      <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">menu <i class="icofont-simple-left"></i></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- Mobile Menu Start -->
+      {include file="html/dh2"}
+      <!-- Mobile Menu End -->
+    </div>
+  </aside>
+  <!--== End Aside Menu ==-->
+</div>
+<script src="{$maccms.path_tpl}static/js/modernizr.js"></script>
+<script src="{$maccms.path_tpl}static/js/jquery-main.js"></script>
+<script src="{$maccms.path_tpl}static/js/jquery-migrate.js"></script>
+<script src="{$maccms.path_tpl}static/js/popper.min.js"></script>
+<script src="{$maccms.path_tpl}static/js/bootstrap.min.js"></script>
+<script src="{$maccms.path_tpl}static/js/swiper.min.js"></script>
+<script src="{$maccms.path_tpl}static/js/fancybox.min.js"></script>
+<script src="{$maccms.path_tpl}static/js/aos.min.js"></script>
+<script src="{$maccms.path_tpl}static/js/counterup.js"></script>
+<script src="{$maccms.path_tpl}static/js/waypoint.js"></script>
+<script src="{$maccms.path_tpl}static/js/custom.js"></script>
+<!--<style>
+@font-face {
+font-family: 'CustomFont'; /* 自定义字体名称 */
+src: url('{$maccms.path_tpl}woff/w03.woff') format('woff'); /* 自定义字体文件路径和格式 */
+}
+body {
+font-family: 'CustomFont', sans-serif; /* 使用自定义字体，如果加载失败则使用备用字体 */
+}
+</style>-->

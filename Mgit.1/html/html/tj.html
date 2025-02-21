@@ -1,0 +1,102 @@
+<div class="card card-mod-info">
+
+			<div class="card-body">
+							<div class="media" style="margin-bottom: 20px;">
+					<h6 class="card-title mr-2">论坛统计</h6>
+					<div class="media-body">
+						<hr  style="border-top: 2px solid rgba(54,100,152,.15);box-shadow: 0 1px hsl(0deg 0% 100% / 80%);">
+				
+					</div>
+					
+								
+				</div>
+			
+					
+
+	<div class="nav-link abc-b  t " style="width: 100%; text-align: left;">
+	<div class="media " >
+					<i class="icon-book " style="font-size: 1.6rem;width: 32px;"></i>
+					<div class="media-body">		
+							<span  style="font-size: 1.1rem;height: 35px;line-height: 35px; text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">
+									全部
+								</span>
+				
+					</div>
+				<div style="font-size: 1.8rem;height: 35px;line-height: 35px; color: rgba(134, 142, 150, 0.8) ">{:mac_data_count(0,'all','vod')}</div>
+							</div>
+				</div>
+	<div class="nav-link abc-b  t " style="width: 100%; text-align: left;">
+	<div class="media " >
+					<i class="icon-comments " style="font-size: 1.6rem;width: 32px;"></i>
+					<div class="media-body">		
+							<span  style="font-size: 1.1rem;height: 35px;line-height: 35px; text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">
+									今日
+								</span>
+				
+					</div>
+				<div style="font-size: 1.8rem;height: 35px;line-height: 35px; color: rgba(134, 142, 150, 0.8) ">{:mac_data_count(0,'today','vod')}</div>
+							</div>
+				</div>				
+	<div class="nav-link abc-b  t " style="width: 100%; text-align: left;">
+	<div class="media " >
+					<i class="icon-user " style="font-size: 1.6rem;width: 32px;"></i>
+					<div class="media-body">		
+							<span  style="font-size: 1.1rem;height: 35px;line-height: 35px; text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">
+									会员
+								</span>
+				
+					</div>
+				<div style="font-size: 1.8rem;height: 35px;line-height: 35px; color: rgba(134, 142, 150, 0.8) ">免会员</div>
+							</div>
+				</div>
+				
+	<div class="nav-link abc-b  t " style="width: 100%; text-align: left;">
+	<div class="media " >
+					<i class="icon-desktop " style="font-size: 1.5rem;width: 32px;"></i>
+					<div class="media-body">		
+							<span  style="font-size: 1.1rem;height: 35px;line-height: 35px; text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">
+									在线
+								</span>
+				
+					</div>
+					
+				<div style="font-size: 1.8rem;height: 35px;line-height: 35px; color: rgba(134, 142, 150, 0.8) "><?php
+//首先你要有读写文件的权限，首次访问肯不显示，正常情况刷新即可
+$online_log = "maplers.dat"; //保存人数的文件到根目录,
+$timeout = 36000;//30秒内没动作者,认为掉线
+$entries = file($online_log);
+$temp = array();
+for ($i=0;$i<count($entries);$i++){
+$entry = explode(",",trim($entries[$i]));
+if(($entry[0] != getenv('REMOTE_ADDR')) && ($entry[1] > time())) {
+array_push($temp,$entry[0].",".$entry[1]."\n"); //取出其他浏览者的信息,并去掉超时者,保存进$temp
+}}
+array_push($temp,getenv('REMOTE_ADDR').",".(time() + ($timeout))."\n"); //更新浏览者的时间
+$maplers = count($temp); //计算在线人数
+$entries = implode("",$temp);
+//写入文件
+$fp = fopen($online_log,"w");
+flock($fp,LOCK_EX); //flock() 不能在NFS以及其他的一些网络文件系统中正常工作
+fputs($fp,$entries);
+flock($fp,LOCK_UN);
+fclose($fp);
+echo "".$maplers."  人";
+?></div>
+							</div>
+				</div>
+				
+					
+
+
+			
+				
+			
+			</div>
+
+
+
+			
+			
+			
+			
+		</div>

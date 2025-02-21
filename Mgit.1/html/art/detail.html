@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+
+<head>
+
+	
+
+		
+
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{$obj.art_name}详情介绍-{$obj.art_name}在线观看-{$obj.art_name}迅雷下载 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.art_name}在线收看,{$obj.art_name}迅雷下载" />
+    <meta name="description" content="{$obj.art_name}剧情:{$obj.art_blurb}" />
+	{include file="html/h"}
+	
+		
+
+</head>
+
+<body>
+	
+	
+
+	
+	
+	{include file="html/dh"}
+										
+
+
+	<main id="body">
+		<div class="container">
+
+		
+
+
+
+<div class="row">
+	<div class="col-lg-9 main">
+	<div class="header-index-meyan mb-3"style="width: 100%;background-image: url({:mac_url_img($obj.art_pic)});background-size: cover;background-attachment: fixed;">
+
+<div class="media ">
+	<div class="small  mr-1" title="发帖日期">
+					
+					
+						<div class="small date badge mr-3 "><span style="font-weight: 500;font-size: 2rem;">{$obj.art_time|date='d',###}</span><br>
+						{$obj.art_time|date='Y/m',###}<br>
+						<i class="icon-eye"></i>{$obj.art_time|date='H:s',###}</div>
+					
+						</div>					
+							
+						
+						<div class="media-body">
+						
+							
+							<div class=" break-all">
+								<div >
+
+									<span class="title-meyan">{$obj.art_name}</span>
+									
+																		
+
+								</div>
+								
+							</div>
+						</div>
+												<div class="small  badge ml-3 mt-2" style="font-size: 1rem;color:#000;background:#f8f9fa; box-shadow: -.1768rem -.1768rem .25rem hsla(0,0%,100%,.35),.1326rem .1326rem .3rem rgba(54,100,152,.15),inset 0 0 0 transparent,inset max(1px,.125rem) max(1px,.125rem) max(1px,.25rem) hsla(0,0%,100%,.6);">
+
+					<a  style="color: #8ca1b9;" href="{:mac_url_type($obj.type)}"><span><i class="icon-reply"></i></span></a>
+																				
+							</div>
+					</div>
+			
+</div>	
+		
+	
+		
+		
+		<div class="card-thread" >
+		    
+		    
+		    
+				<!---00000000000000000----->
+			<div class="card-body meyan-TB-3">
+			<div style="padding: 0.25rem 1.25rem;">
+
+				<br />
+				<div class="message break-all" isfirst="1">
+<p>{$obj.art_page_list[$param['page']]['content']|mac_url_content_img}</p>
+<p>&nbsp;</p>
+
+				
+							
+										
+					
+</div>
+
+				
+				<div class="plugin d-flex justify-content-center mt-3">
+					
+<style>
+.haya-favoriter {
+	position: relative;
+}
+.haya-favorite-show-users {
+	position: absolute;
+	top: 5px;
+	z-index: 100;
+	width: 100%;
+}
+.haya-favorite-show-users .haya-favorite-users {
+	max-height: 250px;
+	overflow-y: auto;
+}
+</style>
+
+
+
+
+				</div>
+
+
+			</div>
+		</div>
+		</div>
+		
+		<!--000000000000000000000-->
+						<div class="media card-body">
+					
+					
+					<div class="media-body">
+						
+						
+							
+							
+							
+						
+						
+						<div class="d-flex justify-content-between small">
+							<div>
+								
+								
+								<!--<span class="text-grey "><i class="icon-comment-o"></i> 0 </span>-->
+								
+								<a href="" class="btn btn-sm btn-xs btn-link" data-modal-url="thread-editviews-5.htm" data-modal-title="编辑lang[views]">.</a>
+							</div>
+							
+							<div class=" mr-3">
+								
+								
+								
+								
+							</div>
+						</div>
+						
+					</div>
+						
+					<div class="meyan-TB-2   text-muted small "style="border-radius: 2.5rem;">
+<div class=" btn  biaobi">
+				<a  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="icon-list-ul text-grey"></i></a>
+          <div class="dropdown-menu" style=" margin: 0.9rem 0 0; box-shadow: 0 0 0 0.125rem #ffffff00, 0.442rem 0.442rem 0.625rem rgb(54 100 152 / 20%), -0.442rem -0.442rem 0.625rem hsl(0deg 0% 100%);
+    border-radius: 1rem;" aria-labelledby="navbarDropdown">
+	
+				<div class="menu "><div class=" text-grey" style=" text-align: center;"><a href="forum-2.htm">&nbsp;-List-&nbsp;</a></div></div>
+        </div>
+
+			
+			</div></div>
+				</div>
+		<br>
+		<!--000000000000000-->
+		<div class="card-postlist " style="background-color: #f8f9fa;">
+			<div class="card-body meyan-TB-3" style="padding: 0rem;">
+				<div class="card-title mt-3">
+					<div class="d-flex justify-content-between container">
+					
+					
+					<h6 class="card-title mr-2">最新回复</h6>
+					<div class="media-body">
+						
+					</div>
+			
+						
+						<div>
+							
+						</div>
+					</div>
+				</div>
+				<ul class="list-unstyled postlist">
+				<!--相关推荐开始-->
+{maccms:vod num="6" ids="'.$obj['vod_rel_vod'].'" order="desc" by="time"}
+<li class="media post mb-3" data-pid="25" data-uid="1" style="border-bottom: 0px solid #e9ecef;background-color: #f8f9fa;padding: 1.25rem;">
+<div class="media-body">
+<div class="d-flex justify-content-between small text-muted mb-4">
+<div class="d-flex">
+<a href="{:mac_url_vod_detail($vo)}" class="mr-3" tabindex="-1">
+<img class="avatar-3 meyan-TB-2" src="{:mac_url_img($vo.vod_pic)}">
+</a>
+<span class="username">
+<a href="{:mac_url_vod_detail($vo)}" class="text-muted font-weight-bold" style="text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">{$vo.vod_name}</a>
+
+<br>
+<span class="badge badge-secondary small haya-post-info-first-floor">
+{if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}
+</span>
+<!--
+<span class="date text-grey "></span>
+-->
+</span>
+</div>
+<div class="text-right text-grey">
+<span class="floor-parent small  badge ">
+{$vo.vod_time|date='m/d H:s:',###}
+<span class="floor  mr-0" style="font-size: 1.5rem;">
+{$vo.vod_time|date='i',###}
+</span></span>
+</div>
+</div>
+<div class=" break-all">
+<div class="meyan-TB-2 message" style="text-align: left;padding: 0.8rem; background: #f8f9fa;">
+<p>{$vo.vod_content|mac_substring=68}...</p>
+</div>
+</div>
+</div>
+</li>
+{/maccms:vod}				
+				
+				<!--相关推荐结束-->
+				
+				</ul>
+			</div>
+		</div>
+		
+		
+		<div class="d-none threadlist"><input type="checkbox" name="modtid" value="5" checked /></div>
+				
+				
+		
+		
+	
+		
+	</div>
+	
+	<div class="col-lg-3  shee-a-a  aside">
+	
+		
+		<div class="card  abc-a card-mod-info card-user-info">
+		<div class="card-body">
+	<div class="media" style="margin-bottom: 20px;">
+					<h6 class="card-title mr-2">作者信息</h6>
+					<div class="media-body">
+						<hr  style="border-top: 2px solid rgba(54,100,152,.15);box-shadow: 0 1px hsl(0deg 0% 100% / 80%);">
+					</div>
+					
+				</div>
+				<div class=" mb-3" style=" text-align: center;">
+					<a href="user-1.htm" tabindex="-1">
+					<img  class=" avatar-5" src="{:mac_url_img($obj.art_pic)}">
+				</a>
+				</div>
+				<div >
+				
+					<div style="padding: 1.25rem;">
+						<div class="btn btn-secondary mr-2" style="font-size: 0.8rem;"># 导演</div><div class="btn btn-secondary mr-2" style="font-size: 0.8rem;"> # UID: {$obj.art_id}</div>
+							<span style="text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">
+									<h5 class="mt-4 mb-2"><a href="">{$obj.art_director}</a></h5>
+								</span>
+							
+						
+						
+						<div class="d-flex justify-content-between small" style="text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">
+								<span>
+	这家伙太懒了，什么也没留下。	</span>
+
+						</div>
+						
+					</div>
+					</div><hr style="border-top: 2px solid rgba(54,100,152,.15);box-shadow: 0 1px hsl(0deg 0% 100% / 80%);">
+											<div class=" abc-b  t" style="width: 100%; text-align: left; padding: 0.5rem 0rem;">
+	<div class="media " style="padding:0  1.25rem;">
+				
+					<div class="media-body">		
+							<span  style="font-size: 1rem; text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">#入库</span>
+				
+					</div>
+				<div style="font-size: 1rem;" >{$obj.art_time_add|date='Y/m/d H:s:i',###}</div>
+							</div>
+				</div>
+				<div class=" abc-b  t" style="width: 100%; text-align: left; padding: 0.5rem 0rem;">
+	<div class="media " style="padding: 0 1.25rem;">
+				
+					<div class="media-body">		
+							<span  style="font-size: 1rem; text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100% / 80%);">#更新</span>
+				
+					</div>
+				<div style="font-size: 1rem;" >{$obj.art_time|date='Y/m/d H:s:i',###}</div>
+							</div>
+				</div>
+			
+				
+					
+				</div>
+			
+
+				
+		</div>
+		<style>
+.f {
+ 
+  
+font-size: 1.7rem;
+
+    text-align: center;
+    float: left;
+}
+.e {
+    padding: 0.4rem 0.75rem;
+    border-radius: 2.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+    vertical-align: top;
+    float: left;
+    margin: 5.5px;
+}
+.shee-e {
+    font-size: 12px;
+}
+@media (max-width: 992px) {
+.f {
+ 
+  
+font-size: 2.7rem
+
+
+}
+}
+</style>
+
+
+
+
+		<div class="form-group">
+	<form action="search.htm" id="search_form">
+		<div class="input-group mb-3">
+			<input type="text" class="form-control" placeholder="关键词" name="keyword">
+			<div class="input-group-append">
+				<button class="btn btn-primary" type="submit">搜索</button>
+			</div>
+		</div>
+	</form>
+</div>
+		</div>
+	
+		
+	</div>
+</div>
+
+
+
+				
+			
+		
+				
+		</div>
+	</main>
+	
+	
+	
+	{include file="html/f"}
+	
+</body>
+
+</html>

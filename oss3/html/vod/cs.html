@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+.image-column {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 35px; /* 增加四周外边间距 35px */
+margin-bottom: 20px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* 增加阴影 */
+
+}
+.image-column img {
+width: 100%;
+aspect-ratio: 16 / 9;
+
+}
+</style>
+</head>
+
+<body>
+  <div class="image-column">
+{maccms:vod num="30" paging="yes" pageurl="vod/type" type="current" order="desc" by="time"}	
+      <img src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}" width="100%" onerror="this.style.display='none'">       
+
+{/maccms:vod}
+  </div>
+</body>
+
+
+</html>

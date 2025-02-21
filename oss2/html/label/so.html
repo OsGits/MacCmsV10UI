@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜索</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      
+    }
+
+    h2 {
+      color: #333;
+      margin-top: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+	
+	h3 {
+		margin-top: 30px;
+	}
+
+    #searchContainer {
+      position: relative;
+      width: 100%;
+    }
+
+    input[type="text"] {
+      padding: 12px 0px 12px 0px;
+      width: 100%;
+      font-size: 18px;
+      border: 2px solid #808080;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #searchButton {
+      position: absolute;
+      right: 1px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 12px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #recommendations {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      column-count: 2;
+    }
+
+    #recommendations h3 {
+      color: #007bff;
+      font-size: 17px;
+      margin-bottom: 15px;
+    }
+
+    #recommendations ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #recommendations ul li a {
+      color: black;
+      text-decoration: none;
+    }
+
+    #recommendations ul li:nth-child(1) a {
+      color: red;
+    }
+
+    #recommendations ul li:nth-child(2) a,
+	#recommendations ul li:nth-child(3) a,
+    #recommendations ul li:nth-child(4) a {
+      color: green;
+    }
+
+    #recommendations ul li {
+      padding: 5px 0;
+      font-size: 13px;
+      border-bottom: 1px solid #e0e0e0;
+      position: relative;
+    }
+
+    #recommendations ul li:last-child {
+      border-bottom: none;
+    }
+
+    #recommendations ul li:hover {
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+	
+  </style>
+</head>
+
+<body>
+<div style="padding: 20px;">
+	<br /><br />
+  <h2>🔍搜索</h2>
+  <div id="searchContainer">
+
+    <form id="search" name="search" method="get" action="{:mac_url('vod/search')}" onSubmit="return qrsearch();">
+      <input type="text" id="searchInput" name="wd" value="{$param.wd}" placeholder="请在此处输入影片名或演员名称">
+      <button type="submit" id="searchButton">搜索</button>
+    </form>
+
+  </div>
+  <h3>♨️热搜影视</h3>
+  <div id="recommendations">
+
+    <ul>
+      {maccms:foreach name=":explode(',',$maccms.search_hot)" id="vo2" key="key2"}
+      <li><a href="{:mac_url('vod/search',['wd'=>$vo2])}">☆{$vo2}</a></li>
+      {/maccms:foreach}
+    </ul>
+  </div>
+  
+  <h3>✭最新更新</h3>
+  <div id="recommendations">
+
+    <ul>
+      {maccms:vod num="12" paging="yes" pageurl="index/index" type="22,34,45,50,57" order="desc" by="rnd"}
+      <li><a href="{:mac_url_vod_detail($vo)}">»{$vo.vod_name}</a></li>
+      {/maccms:vod}
+    </ul>
+  </div>
+<br /><br /><br />
+{$maccms.site_tj}  
+</div>
+{include file="html/dh"}
+</body>
+
+</html>

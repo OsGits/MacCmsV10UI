@@ -1,0 +1,87 @@
+<header class="navbar navbar-expand-lg navbar-dark bg-dark " id="header">
+    <div class="container mb-1">
+        <a class="navbar-brand text-truncate" href="/">
+            <img src="{$maccms.path_tpl}/picture/logo.png" class="logo-2" style="text-indent: 4px;margin-inline-start: 10px;margin-inline-end: 0px;font-weight: bold;text-shadow: 0.1326rem 0.1326rem 0.1875rem rgb(19 40 77 / 30%), -1px -1px 1px hsl(0deg 0% 100%);">
+        </a>
+        <div class=" hidden-lg">
+            <a class="navbar-brand " href="/s.html">
+                <span class="meyan-TB">
+                    <i class="icon-search"></i>
+                </span>
+            </a>
+            <a class="navbar-brand" href="user-login.htm"><span class="meyan-TB"><i class="icon-user"></i></span></a>
+            <!--<li class="nav-item"><a class="nav-link" href="user-create.htm">注册</a>-->
+        </div>
+        <div class="collapse navbar-collapse" id="nav">
+            <!-- 左侧：版块 -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-itemb mr-2" fid="2" data-active="fid-2"><a class="nav-link" href="{$maccms.path}"> 首页</a></li>
+                {maccms:type ids="parent" order="asc" by="sort"}
+                <li class="nav-itemb mr-2" fid="2" data-active="fid-2">
+                    <a class="nav-link" href="{:mac_url_type($vo)}">{$vo.type_name}</a>
+                </li>
+                {/maccms:type}
+
+
+                <!--<li class="nav-itemb mr-2"  fid="2" data-active="fid-2">
+                				<a class="nav-link" href="https://img.vodx.cc/admin/albums" target="_blank">图库</a>
+                			</li>-->
+
+            </ul>
+
+            <!-- 右侧：用户 -->
+
+            <ul class="navbar-nav">
+
+
+
+                <a class="navbar-brand " href="/s.htm"><span class="meyan-TB"><i class="icon-search"></i></span></a>
+
+                <li class="nav-item"><a class="navbar-brand" href="user-login.htm"><span class="meyan-TB"><i class="icon-user"></i></span></a></li>
+
+                <!--<li class="nav-item"><a class="nav-link" href="user-create.htm">注册</a></li>-->
+
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</header>
+
+<div class="container  hidden-lg">
+
+    <ul class="navbar-nav navbar-nav-b meyan-x example ">
+
+
+
+        <li class="nav-item mr-2  aaa" fid="2" data-active="fid-2">
+            <a class="nav-link" href="/"><i class="icon-circle-o d-none"></i>首页</a>
+        </li>
+
+
+        {maccms:type ids="parent" order="asc" by="sort"}
+        <li class="nav-item mr-2  aaa" fid="2" data-active="fid-2">
+            <a class="nav-link" href="{:mac_url_type($vo)}"><i class="icon-circle-o d-none"></i>{$vo.type_name}</a>
+        </li>
+        {/maccms:type}
+
+
+        <!--li class="nav-item mr-2  aaa"   fid="2" data-active="fid-2">
+        						<a class="nav-link"  href="https://img.vodx.cc/admin/albums" target="_blank"><i class="icon-circle-o d-none"></i>图库</a>
+        					</li-->
+
+
+
+
+
+
+        <div style="width: 10px;"></div>
+
+    </ul>
+
+
+
+</div>

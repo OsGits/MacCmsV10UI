@@ -1,0 +1,35 @@
+.gitee-directory {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.gitee-directory ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.gitee-directory li {
+  padding: 5px 0;
+}
+
+.folder-icon {
+  width: 20px;
+  height: 20px;
+  background-color: #3498db;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.file-icon {
+  width: 16px;
+  height: 16px;
+  background-color: #e74c3c;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.folder-name,
+.file-name {
+  display: inline-block;
+}

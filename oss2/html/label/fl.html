@@ -1,0 +1,67 @@
+{include file="html/mi"}
+<html lang="en">
+<title>分类 :: {$maccms.site_name} :: {$maccms.site_description}！</title>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+  .menu-container {
+      column-count: 2;
+      column-gap: 10px;
+    }
+
+  .menu-item {
+      display: inline-block;
+      width: 100%;
+      background-color: #f1f1f1;
+      padding: 15px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+  .menu-item h3 {
+      margin: 0;
+    }
+
+  .menu-item p {
+      margin: 10px 0 0 0;
+    }
+  </style>
+</head>
+
+<body><br><br>
+<div style="padding: 20px;">
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;视频分类</h3>
+  <div class="menu-container">
+    {maccms:type ids="" order="asc" by="sort" id="vo1" key="key1"}
+    {if condition="$key1 lt 50"}
+	{maccms:type parent="'.$vo1['type_id'].'" order="asc" by="sort" id="vo2" key="key2"}
+	<a href="{:mac_url_type($vo2,[],'type')}">
+			
+    <div class="menu-item" style="color: #<?php $min = 000000; $max = 999999; $randomNumber = rand($min, $max); echo $randomNumber; ?>;">
+      <h3><center>{$vo2.type_name}</center></h3>
+      <p><font size="1">
+         
+      {maccms:vod num="1"  type="'.$vo2['type_id'].'" order="desc" by="time"}
+      【{$vo.vod_name}】类的{$vo2.type_name}视频，免费在线观看！本分类最近更新于{$vo.vod_time|date='y/m/d H:i',###}
+      {/maccms:vod}
+      
+      </font></p>
+    </div>
+	</a>
+	{/maccms:type}
+	{/if}
+	{/maccms:type}
+  </div>
+
+  <br><br><br><br>
+  </div>
+{include file="html/dh"}
+</body>
+
+</html>

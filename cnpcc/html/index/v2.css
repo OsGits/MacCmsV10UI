@@ -1,0 +1,149 @@
+body {
+    display: block;
+    margin: 1px;
+}
+
+    nav {
+      background-color: #333;
+      padding: 1px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    nav ul li {
+      float: left;
+      position: relative;
+    }
+
+    nav ul li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 10px 2px ;
+      text-decoration: none;
+    }
+
+    nav ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #333;
+    }
+
+    nav ul li:hover>ul {
+      display: block;
+    }
+
+    nav ul li ul li a {
+      padding: 10px 14px;
+    }
+nav ul li a {
+  white-space: nowrap;
+  overflow: auto;
+}
+.overflow-scroll {
+  white-space: nowrap;
+  overflow: auto;
+  height: 12px
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    padding:5px;
+}
+.notice-board {
+  background-color: #f5f5f5;  /* 背景颜色  */
+  padding: 10px;  /* 内边距  */
+  border: 1px solid #ddd;  /* 边框  */
+  font-size: 12px;  /* 字体大小  */
+  color: #333;  /* 文字颜色  */
+}
+
+.notice-board h2 {
+  margin-top: 0;  /* 去除 h2 元素顶部的外边距  */
+  font-size: 14px;  /* h2 字体大小  */
+}
+
+.notice-board p {
+  margin-bottom: 5px;  /* 段落底部外边距  */
+}
+
+
+
+.waterfall {
+  column-gap: 0px;
+}
+
+@media (max-width: 600px) {
+ .waterfall {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+ .waterfall {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 901px) {
+ .waterfall {
+    column-count: 5;
+  }
+}
+
+.waterfall img {
+  width: 100%;
+  display: block;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-details {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px;
+}
+.image-details h3 {
+  font-size: 12px;  
+  line-height: 1;
+}
+.image-details p {
+  font-size: 10px; 
+  line-height: 1;
+}
+
+.icon-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-icon {
+  height: 50px;
+  box-shadow: 5px 6px 10px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+a {
+  text-decoration: none;  /* 取消下划线  */
+  color: white;  /* 颜色设置为白色  */
+}
+
+
